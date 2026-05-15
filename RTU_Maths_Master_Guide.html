@@ -1,0 +1,1848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RTU Maths — Master PYQ Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0f;
+  --bg2: #111118;
+  --bg3: #18181f;
+  --card: #1c1c25;
+  --card2: #22222d;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --accent: #7c6af0;
+  --accent2: #a78bfa;
+  --teal: #2dd4bf;
+  --amber: #f59e0b;
+  --rose: #f43f5e;
+  --green: #4ade80;
+  --text: #f0f0f8;
+  --text2: #9090a8;
+  --text3: #5a5a72;
+  --hot: #ef4444;
+  --high: #f59e0b;
+  --med: #22c55e;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+
+/* Animated background */
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 20% 10%,rgba(124,106,240,0.08),transparent),radial-gradient(ellipse 60% 80% at 80% 90%,rgba(45,212,191,0.06),transparent);pointer-events:none;z-index:0}
+
+.wrapper{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* HEADER */
+.hero{padding:60px 20px 40px;text-align:center;position:relative}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(124,106,240,0.15);border:1px solid rgba(124,106,240,0.3);border-radius:100px;padding:6px 16px;font-size:12px;color:var(--accent2);letter-spacing:0.5px;margin-bottom:24px}
+.hero h1{font-size:clamp(28px,5vw,52px);font-weight:800;line-height:1.1;letter-spacing:-1px;margin-bottom:16px}
+.hero h1 span{background:linear-gradient(135deg,var(--accent2),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:15px;color:var(--text2);max-width:560px;margin:0 auto 32px;line-height:1.7}
+.hero-stats{display:flex;justify-content:center;gap:32px;flex-wrap:wrap}
+.stat{text-align:center}
+.stat-num{font-size:28px;font-weight:800;color:var(--accent2)}
+.stat-label{font-size:11px;color:var(--text3);margin-top:2px;letter-spacing:0.5px;text-transform:uppercase}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(10,10,15,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 20px}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav-btn{flex-shrink:0;padding:16px 20px;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;color:var(--text3);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;transition:all 0.2s;white-space:nowrap;letter-spacing:0.3px}
+.nav-btn:hover{color:var(--text)}
+.nav-btn.active{color:var(--accent2);border-bottom-color:var(--accent2)}
+
+/* SECTIONS */
+.section{display:none;padding:40px 0}
+.section.active{display:block}
+.section-title{font-size:22px;font-weight:700;margin-bottom:8px}
+.section-sub{font-size:14px;color:var(--text2);margin-bottom:32px;line-height:1.6}
+
+/* GRID */
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:24px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:24px}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:28px}
+
+/* CARDS */
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;transition:border-color 0.2s}
+.card:hover{border-color:var(--border2)}
+.card-sm{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px}
+
+/* UNIT IMPORTANCE CARDS */
+.unit-imp{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:16px}
+.unit-imp-header{padding:20px 24px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;gap:16px;transition:background 0.2s}
+.unit-imp-header:hover{background:var(--card2)}
+.unit-imp-title{font-size:16px;font-weight:700}
+.unit-imp-sub{font-size:12px;color:var(--text2);margin-top:4px;line-height:1.5}
+.unit-imp-body{padding:0 24px 20px;display:none;border-top:1px solid var(--border)}
+.unit-imp-body.open{display:block}
+
+/* BADGES */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:4px 12px;border-radius:100px;font-size:11px;font-weight:600;letter-spacing:0.3px;flex-shrink:0}
+.badge-hot{background:rgba(239,68,68,0.15);color:#f87171;border:1px solid rgba(239,68,68,0.25)}
+.badge-high{background:rgba(245,158,11,0.15);color:#fbbf24;border:1px solid rgba(245,158,11,0.25)}
+.badge-med{background:rgba(34,197,94,0.15);color:#4ade80;border:1px solid rgba(34,197,94,0.25)}
+.badge-info{background:rgba(124,106,240,0.15);color:var(--accent2);border:1px solid rgba(124,106,240,0.25)}
+.badge-parta{background:rgba(45,212,191,0.12);color:var(--teal);border:1px solid rgba(45,212,191,0.2);font-size:10px}
+.badge-partb{background:rgba(245,158,11,0.12);color:#fbbf24;border:1px solid rgba(245,158,11,0.2);font-size:10px}
+.badge-partc{background:rgba(244,63,94,0.12);color:#fb7185;border:1px solid rgba(244,63,94,0.2);font-size:10px}
+
+/* Q ITEMS */
+.q-item{margin:12px 0;padding:14px 16px;background:var(--bg3);border-radius:12px;border:1px solid var(--border)}
+.q-text{font-size:14px;line-height:1.65;margin-bottom:8px;color:var(--text)}
+.q-meta{font-size:11px;color:var(--text3);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.freq-bar{height:3px;background:var(--bg);border-radius:2px;margin-top:8px}
+.freq-fill{height:100%;border-radius:2px;transition:width 1s ease}
+
+/* METRIC CARDS */
+.metric{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;text-align:center}
+.metric-num{font-size:32px;font-weight:800;line-height:1}
+.metric-label{font-size:11px;color:var(--text2);margin-top:8px;line-height:1.5;letter-spacing:0.3px}
+.metric-bar{height:4px;border-radius:2px;background:var(--border);margin-top:14px}
+.metric-fill{height:100%;border-radius:2px}
+
+/* ANSWERS */
+.answer-box{background:var(--card);border:1px solid var(--border);border-radius:16px;margin-bottom:16px;overflow:hidden}
+.ans-header{padding:18px 22px;display:flex;align-items:flex-start;gap:14px;cursor:pointer;transition:background 0.2s}
+.ans-header:hover{background:var(--card2)}
+.ans-num{background:linear-gradient(135deg,var(--accent),var(--teal));color:white;width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;margin-top:2px}
+.ans-q{font-size:14px;font-weight:600;line-height:1.55;flex:1;color:var(--text)}
+.ans-toggle{color:var(--text3);font-size:18px;flex-shrink:0;margin-top:6px;transition:transform 0.3s}
+.ans-toggle.open{transform:rotate(180deg)}
+.ans-body{padding:0 22px 22px;display:none;border-top:1px solid var(--border)}
+.ans-body.open{display:block}
+
+.step{margin:14px 0;padding:14px 16px;border-left:2px solid var(--accent);background:rgba(124,106,240,0.04);border-radius:0 12px 12px 0}
+.step-title{font-size:11px;font-weight:700;color:var(--accent2);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:8px}
+.step-body{font-size:13.5px;color:var(--text2);line-height:1.8;font-family:'JetBrains Mono',monospace}
+.step-body strong{color:var(--text);font-weight:600}
+
+.formula{background:var(--bg3);border:1px solid var(--border2);border-radius:10px;padding:12px 16px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--teal);margin:10px 0;line-height:1.7}
+.formula-highlight{color:var(--amber)}
+
+.warning-box{background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);border-radius:12px;padding:14px 16px;font-size:13px;color:#fbbf24;margin:16px 0;line-height:1.65}
+.info-box{background:rgba(124,106,240,0.08);border:1px solid rgba(124,106,240,0.2);border-radius:12px;padding:14px 16px;font-size:13px;color:var(--accent2);margin:16px 0;line-height:1.65}
+.success-box{background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2);border-radius:12px;padding:14px 16px;font-size:13px;color:var(--green);margin:16px 0;line-height:1.65}
+
+/* PAPER VIEW */
+.paper-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-bottom:24px}
+.paper-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;cursor:pointer;transition:all 0.2s}
+.paper-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.paper-card.selected{border-color:var(--accent2);box-shadow:0 0 0 1px rgba(124,106,240,0.3)}
+.paper-head{padding:20px;background:linear-gradient(135deg,rgba(124,106,240,0.12),rgba(45,212,191,0.06));border-bottom:1px solid var(--border)}
+.paper-code{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--accent2);margin-bottom:6px;letter-spacing:1px}
+.paper-title{font-size:15px;font-weight:700;margin-bottom:4px}
+.paper-year{font-size:12px;color:var(--text2)}
+.paper-body{padding:16px}
+.paper-q{padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text2);line-height:1.55}
+.paper-q:last-child{border-bottom:none}
+.paper-q-num{color:var(--accent2);font-weight:700;margin-right:6px;font-family:'JetBrains Mono',monospace;font-size:11px}
+.paper-section-label{font-size:10px;font-weight:700;letter-spacing:1px;color:var(--text3);text-transform:uppercase;padding:10px 0 6px;margin-top:6px}
+
+/* PRIORITY TABLE */
+.priority-table{width:100%;border-collapse:collapse;margin:16px 0}
+.priority-table th{text-align:left;padding:12px 16px;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:var(--text3);border-bottom:1px solid var(--border)}
+.priority-table td{padding:12px 16px;font-size:13px;color:var(--text2);border-bottom:1px solid var(--border);vertical-align:top;line-height:1.6}
+.priority-table tr:last-child td{border-bottom:none}
+.priority-table tr:hover td{background:var(--bg3)}
+
+/* SEARCH */
+.search-wrap{position:relative;margin-bottom:24px}
+.search-input{width:100%;padding:14px 20px 14px 48px;background:var(--card);border:1px solid var(--border);border-radius:14px;color:var(--text);font-family:'Syne',sans-serif;font-size:14px;outline:none;transition:border-color 0.2s}
+.search-input:focus{border-color:var(--accent)}
+.search-input::placeholder{color:var(--text3)}
+.search-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:20px;pointer-events:none}
+
+/* TABS inside sections */
+.inner-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.inner-tab{padding:8px 18px;border:1px solid var(--border);border-radius:100px;font-size:13px;font-weight:600;color:var(--text2);cursor:pointer;transition:all 0.2s;background:none}
+.inner-tab:hover{border-color:var(--border2);color:var(--text)}
+.inner-tab.active{background:rgba(124,106,240,0.15);border-color:rgba(124,106,240,0.4);color:var(--accent2)}
+
+/* PROGRESS BARS */
+.prog-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;font-size:13px}
+.prog-bar{height:6px;background:var(--border);border-radius:3px;margin-bottom:14px}
+.prog-fill{height:100%;border-radius:3px;transition:width 1.2s ease}
+
+/* COLLAPSE ICON */
+.collapse-arrow{width:20px;height:20px;display:flex;align-items:center;justify-content:center;border-radius:6px;background:var(--bg3);color:var(--text3);font-size:14px;flex-shrink:0;transition:transform 0.3s}
+.collapse-arrow.open{transform:rotate(180deg)}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--bg3);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--border2)}
+
+/* MOBILE */
+@media(max-width:600px){
+  .hero{padding:40px 16px 30px}
+  .hero-stats{gap:20px}
+  .stat-num{font-size:22px}
+}
+
+/* PRINT */
+@media print{
+  body{background:white;color:black}
+  .nav,.hero::before{display:none}
+}
+
+.tag{display:inline-block;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:600;letter-spacing:0.3px;margin:2px}
+.tag-maths1{background:rgba(45,212,191,0.12);color:var(--teal)}
+.tag-maths2{background:rgba(124,106,240,0.12);color:var(--accent2)}
+.tag-new{background:rgba(74,222,128,0.15);color:var(--green)}
+
+.divider{height:1px;background:var(--border);margin:24px 0}
+
+.highlight{color:var(--accent2);font-weight:600}
+.code{font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--bg3);padding:2px 6px;border-radius:4px;color:var(--teal)}
+
+/* TOOLTIP */
+.tooltip{position:relative}
+.tooltip::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:6px 10px;font-size:11px;color:var(--text);white-space:nowrap;pointer-events:none;opacity:0;transition:opacity 0.2s;z-index:10}
+.tooltip:hover::after{opacity:1}
+
+.empty{text-align:center;padding:48px 0;color:var(--text3);font-size:14px}
+
+/* Ripple effect on cards */
+.paper-card::after{content:'';position:absolute;inset:0;border-radius:16px;transition:background 0.3s}
+.paper-card{position:relative}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">📚 RTU Kota — Engineering Mathematics</div>
+  <h1>Master <span>PYQ Guide</span><br>2022 → 2026</h1>
+  <p>Complete analysis of all past papers — Maths I & II. Repeated questions, unit-wise importance, step-by-step solutions.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">10</div><div class="stat-label">Papers Analyzed</div></div>
+    <div class="stat"><div class="stat-num">47+</div><div class="stat-label">Repeated Questions</div></div>
+    <div class="stat"><div class="stat-num">5</div><div class="stat-label">Units Covered</div></div>
+    <div class="stat"><div class="stat-num">2026</div><div class="stat-label">Latest Paper</div></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-inner">
+    <button class="nav-btn active" onclick="showSection('importance')">📊 Unit Priority</button>
+    <button class="nav-btn" onclick="showSection('repeated')">🔁 Repeated Qs</button>
+    <button class="nav-btn" onclick="showSection('parta')">✍️ Part A Solutions</button>
+    <button class="nav-btn" onclick="showSection('partbc')">🎯 Part B & C Solutions</button>
+    <button class="nav-btn" onclick="showSection('papers')">📄 All Papers</button>
+    <button class="nav-btn" onclick="showSection('formulas')">📐 Formula Sheet</button>
+  </div>
+</div>
+
+<div class="wrapper">
+
+<!-- ============================= SECTION 1: IMPORTANCE ============================= -->
+<div id="importance" class="section active">
+  <div class="section-title">📊 Unit-wise Importance</div>
+  <div class="section-sub">Sabse zyada baar aayi topics, frequency analysis of 2022–2026 papers. Inhe pehle padho.</div>
+
+  <div class="warning-box">⚠️ <strong>Exam Strategy (Hinglish):</strong> Pehle Part A ke sabhi answers yaad karo (2×10=20 marks free hain). Phir Part B mein se 5 easy questions chuno. Part C mein se wo 3 topics karo jahan maximum score ho. Total = 70 marks.</div>
+
+  <div class="grid4">
+    <div class="metric">
+      <div class="metric-num" style="color:#ef4444">35%</div>
+      <div class="metric-label">Matrices & Linear Algebra<br><span style="color:var(--text3);font-size:10px">Maths II Unit 1</span></div>
+      <div class="metric-bar"><div class="metric-fill" style="width:90%;background:#ef4444"></div></div>
+    </div>
+    <div class="metric">
+      <div class="metric-num" style="color:#f59e0b">28%</div>
+      <div class="metric-label">Higher Order ODEs<br><span style="color:var(--text3);font-size:10px">Maths II Unit 3</span></div>
+      <div class="metric-bar"><div class="metric-fill" style="width:75%;background:#f59e0b"></div></div>
+    </div>
+    <div class="metric">
+      <div class="metric-num" style="color:#22c55e">22%</div>
+      <div class="metric-label">PDEs (1st & Higher Order)<br><span style="color:var(--text3);font-size:10px">Maths II Units 4 & 5</span></div>
+      <div class="metric-bar"><div class="metric-fill" style="width:60%;background:#22c55e"></div></div>
+    </div>
+    <div class="metric">
+      <div class="metric-num" style="color:var(--accent2)">15%</div>
+      <div class="metric-label">1st Order ODEs<br><span style="color:var(--text3);font-size:10px">Maths II Unit 2</span></div>
+      <div class="metric-bar"><div class="metric-fill" style="width:40%;background:var(--accent)"></div></div>
+    </div>
+  </div>
+
+  <div class="info-box">🎯 <strong>Maths I ke liye:</strong> Fourier Series (har paper mein aata hai, sabse zyada), phir Vector Calculus (Green's, Stokes', Gauss'), phir Beta-Gamma functions, phir Multiple Integrals. Ye order follow karo.</div>
+
+  <!-- UNIT 1 -->
+  <div class="unit-imp">
+    <div class="unit-imp-header" onclick="toggleUnit('u1')">
+      <div>
+        <div class="unit-imp-title">🔥 Unit 1 — Matrices & Linear Algebra <span class="tag tag-maths2">Maths II</span></div>
+        <div class="unit-imp-sub">Cayley-Hamilton, Rank, Eigenvalues — ye sab mil ke ~35% marks laate hain. Har paper mein guaranteed aata hai.</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="badge badge-hot">🔥 MOST IMP</span>
+        <div class="collapse-arrow" id="u1-arrow">▼</div>
+      </div>
+    </div>
+    <div class="unit-imp-body" id="u1-body">
+      <div style="padding-top:16px">
+        <div class="prog-label"><span>Cayley-Hamilton Theorem + Inverse</span><span style="color:#ef4444">★★★★★ Part C (10 marks)</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:98%;background:#ef4444"></div></div>
+        <div class="prog-label"><span>Rank of Matrix (Normal Form)</span><span style="color:#f59e0b">★★★★★ Part B (4 marks)</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:92%;background:#f59e0b"></div></div>
+        <div class="prog-label"><span>Eigenvalues & Eigenvectors</span><span style="color:#f59e0b">★★★★☆ Part C (10 marks)</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:80%;background:#f59e0b"></div></div>
+        <div class="prog-label"><span>System of Linear Equations (λ, μ)</span><span style="color:#22c55e">★★★★☆ Part B (4 marks)</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:75%;background:#22c55e"></div></div>
+        <div class="prog-label"><span>Rank-Nullity + Orthogonal Matrix (definition)</span><span style="color:#7c6af0">★★★☆☆ Part A (2 marks)</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:60%;background:#7c6af0"></div></div>
+        <div class="q-item">
+          <div class="q-text"><strong>Most expected question 2025/26:</strong> Verify Cayley-Hamilton theorem for a 3×3 matrix and find A⁻¹ using it.</div>
+          <div class="q-meta"><span class="badge-partc badge">Part C</span> 10 marks | appeared in 2024, 2023 (both paper codes)</div>
+        </div>
+        <div class="q-item">
+          <div class="q-text"><strong>Also likely:</strong> For what values of λ and μ do the equations have (i) no solution (ii) unique solution (iii) infinite solutions?</div>
+          <div class="q-meta"><span class="badge-partb badge">Part B</span> 4 marks | appeared in 2023 paper</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- UNIT 3 -->
+  <div class="unit-imp">
+    <div class="unit-imp-header" onclick="toggleUnit('u3')">
+      <div>
+        <div class="unit-imp-title">⚡ Unit 3 — Higher Order ODEs <span class="tag tag-maths2">Maths II</span></div>
+        <div class="unit-imp-sub">Variation of Parameters + Cauchy-Euler = must-do. D-operator method bhi important hai.</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="badge badge-high">⚡ HIGH IMP</span>
+        <div class="collapse-arrow" id="u3-arrow">▼</div>
+      </div>
+    </div>
+    <div class="unit-imp-body" id="u3-body">
+      <div style="padding-top:16px">
+        <div class="prog-label"><span>Variation of Parameters</span><span style="color:#ef4444">★★★★★ Part C (10 marks)</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:95%;background:#ef4444"></div></div>
+        <div class="prog-label"><span>CF + PI using D-operator (e^ax, sinx)</span><span style="color:#f59e0b">★★★★★ Part B (4 marks)</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:90%;background:#f59e0b"></div></div>
+        <div class="prog-label"><span>Cauchy-Euler equation</span><span style="color:#f59e0b">★★★★☆ Part B (4 marks)</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:82%;background:#f59e0b"></div></div>
+        <div class="prog-label"><span>Exact Differential Equations (complex)</span><span style="color:#22c55e">★★★★☆ Part C (10 marks)</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:75%;background:#22c55e"></div></div>
+        <div class="prog-label"><span>Legendre/Bessel DE (definition level)</span><span style="color:#7c6af0">★★★☆☆ Part A (2 marks)</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:55%;background:#7c6af0"></div></div>
+        <div class="info-box" style="margin:16px 0">💡 <strong>Tip:</strong> (D² + aD + b)y = e^(cx)sinx wala type 4+ papers mein aaya hai. Exponential shift formula yaad karo: 1/f(D) · e^(ax)V = e^(ax) · 1/f(D+a) · V</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- UNIT 4 & 5 -->
+  <div class="unit-imp">
+    <div class="unit-imp-header" onclick="toggleUnit('u45')">
+      <div>
+        <div class="unit-imp-title">📐 Units 4 & 5 — PDEs (1st & Higher Order) <span class="tag tag-maths2">Maths II</span></div>
+        <div class="unit-imp-sub">Charpit's method + Lagrange's form + Separation of Variables. Laplace equation Part C mein confirmed.</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="badge badge-high">📐 HIGH IMP</span>
+        <div class="collapse-arrow" id="u45-arrow">▼</div>
+      </div>
+    </div>
+    <div class="unit-imp-body" id="u45-body">
+      <div style="padding-top:16px">
+        <div class="prog-label"><span>Charpit's Method (px+qy=pq type)</span><span style="color:#ef4444">★★★★★ Part C (10 marks)</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:94%;background:#ef4444"></div></div>
+        <div class="prog-label"><span>Laplace Equation by Separation of Variables</span><span style="color:#ef4444">★★★★★ Part C (10 marks)</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:90%;background:#ef4444"></div></div>
+        <div class="prog-label"><span>Lagrange's Form (Pp + Qq = R)</span><span style="color:#f59e0b">★★★★☆ Part B (4 marks)</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:80%;background:#f59e0b"></div></div>
+        <div class="prog-label"><span>Wave & Heat Equation (classification)</span><span style="color:#7c6af0">★★★☆☆ Part A (2 marks)</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:60%;background:#7c6af0"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATHS I UNITS -->
+  <div class="unit-imp">
+    <div class="unit-imp-header" onclick="toggleUnit('um1')">
+      <div>
+        <div class="unit-imp-title">🌊 Maths I — Fourier Series <span class="tag tag-maths1">Maths I</span></div>
+        <div class="unit-imp-sub">Sabse zyada baar aata hai — har paper mein at least 2 questions. Part C mein 10 marks guaranteed.</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="badge badge-hot">🔥 MOST IMP</span>
+        <div class="collapse-arrow" id="um1-arrow">▼</div>
+      </div>
+    </div>
+    <div class="unit-imp-body" id="um1-body">
+      <div style="padding-top:16px">
+        <div class="prog-label"><span>Fourier series in (−π,π) or (−1,1)</span><span style="color:#ef4444">★★★★★ Part C (10 marks)</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:100%;background:#ef4444"></div></div>
+        <div class="prog-label"><span>Half-range cosine/sine series</span><span style="color:#f59e0b">★★★★★ Part B (4 marks)</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:92%;background:#f59e0b"></div></div>
+        <div class="prog-label"><span>Parseval's identity + deduction</span><span style="color:#f59e0b">★★★★☆ Part C</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:78%;background:#f59e0b"></div></div>
+        <div class="prog-label"><span>Euler's formula (definition)</span><span style="color:#22c55e">★★★★★ Part A (2 marks)</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:98%;background:#22c55e"></div></div>
+        <div class="q-item">
+          <div class="q-text"><strong>Pattern:</strong> f(x) = x−x² in (−1,1) aur f(x) = |x| in (−π,π) alternate hote rehte hain. Dono yaad karo!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="unit-imp">
+    <div class="unit-imp-header" onclick="toggleUnit('um2')">
+      <div>
+        <div class="unit-imp-title">🧮 Maths I — Vector Calculus <span class="tag tag-maths1">Maths I</span></div>
+        <div class="unit-imp-sub">Green's, Stokes', Gauss' theorems — verify type questions Part C mein. Directional derivative Part B mein.</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="badge badge-high">⚡ HIGH IMP</span>
+        <div class="collapse-arrow" id="um2-arrow">▼</div>
+      </div>
+    </div>
+    <div class="unit-imp-body" id="um2-body">
+      <div style="padding-top:16px">
+        <div class="prog-label"><span>Green's Theorem (verify)</span><span style="color:#ef4444">★★★★★ Part C (10 marks)</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:95%;background:#ef4444"></div></div>
+        <div class="prog-label"><span>Stokes' Theorem (verify)</span><span style="color:#f59e0b">★★★★☆ Part C (10 marks)</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:82%;background:#f59e0b"></div></div>
+        <div class="prog-label"><span>Gauss Divergence Theorem</span><span style="color:#f59e0b">★★★★☆ Part C (10 marks)</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:80%;background:#f59e0b"></div></div>
+        <div class="prog-label"><span>Directional Derivative (∇φ)</span><span style="color:#f59e0b">★★★★★ Part B (4 marks)</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:90%;background:#f59e0b"></div></div>
+        <div class="prog-label"><span>Gauss Theorem (state only — Part A)</span><span style="color:#22c55e">★★★★★ Part A (2 marks)</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:95%;background:#22c55e"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= SECTION 2: REPEATED ============================= -->
+<div id="repeated" class="section">
+  <div class="section-title">🔁 Most Repeated Questions</div>
+  <div class="section-sub">Ye questions 3+ papers mein aaye hain. Inhe prepare karo aur exam mein pakka dekho. Frequency jitni zyada, utna important.</div>
+
+  <div class="inner-tabs">
+    <button class="inner-tab active" onclick="showInner('rep-maths2','rep')">Maths II Repeated</button>
+    <button class="inner-tab" onclick="showInner('rep-maths1','rep')">Maths I Repeated</button>
+    <button class="inner-tab" onclick="showInner('rep-priority','rep')">Priority Table</button>
+  </div>
+
+  <div id="rep-maths2" class="inner-section">
+    <div class="success-box">✅ <strong>Maths II Top Picks:</strong> Ye 7 questions sabse zyada repeat hue hain. In sab ke answers agar aate hain toh 50+ marks confirm hain.</div>
+    
+    <div class="q-item" style="border-color:rgba(239,68,68,0.3)">
+      <div style="display:flex;align-items:flex-start;gap:12px">
+        <div style="background:rgba(239,68,68,0.15);color:#f87171;border-radius:10px;padding:6px 12px;font-size:20px;font-weight:800;flex-shrink:0">#1</div>
+        <div style="flex:1">
+          <div class="q-text"><strong>Verify Cayley-Hamilton Theorem</strong> for a 3×3 matrix and find A⁻¹.</div>
+          <div style="font-size:12px;color:var(--text2);margin:4px 0">Common matrices: A=[[1,0,2],[0,2,1],[2,0,3]] or [[0,1,2],[1,2,3],[3,1,1]]</div>
+          <div class="q-meta">
+            <span class="badge-partc badge">Part C — 10 marks</span>
+            <span class="badge badge-hot">2024 • 2023 • 2022 — 4+ papers</span>
+          </div>
+          <div class="freq-bar"><div class="freq-fill" style="width:100%;background:#ef4444"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-item" style="border-color:rgba(239,68,68,0.3)">
+      <div style="display:flex;align-items:flex-start;gap:12px">
+        <div style="background:rgba(239,68,68,0.15);color:#f87171;border-radius:10px;padding:6px 12px;font-size:20px;font-weight:800;flex-shrink:0">#2</div>
+        <div style="flex:1">
+          <div class="q-text"><strong>Variation of Parameters:</strong> Solve d²y/dx² − y = 2/(1+eˣ)</div>
+          <div style="font-size:12px;color:var(--text2);margin:4px 0">Ya similar: x²d²y/dx² + xdy/dx − y = x²eˣ</div>
+          <div class="q-meta">
+            <span class="badge-partc badge">Part C — 10 marks</span>
+            <span class="badge badge-hot">2024 • 2023 — 3+ papers</span>
+          </div>
+          <div class="freq-bar"><div class="freq-fill" style="width:95%;background:#ef4444"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-item" style="border-color:rgba(239,68,68,0.3)">
+      <div style="display:flex;align-items:flex-start;gap:12px">
+        <div style="background:rgba(239,68,68,0.15);color:#f87171;border-radius:10px;padding:6px 12px;font-size:20px;font-weight:800;flex-shrink:0">#3</div>
+        <div style="flex:1">
+          <div class="q-text"><strong>Charpit's Method:</strong> Solve px + qy = pq</div>
+          <div style="font-size:12px;color:var(--text2);margin:4px 0">Alternative: 9(p²z + q²) = 4</div>
+          <div class="q-meta">
+            <span class="badge-partc badge">Part C — 10 marks</span>
+            <span class="badge badge-hot">2024 • 2023 — 3+ papers</span>
+          </div>
+          <div class="freq-bar"><div class="freq-fill" style="width:95%;background:#ef4444"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-item" style="border-color:rgba(245,158,11,0.3)">
+      <div style="display:flex;align-items:flex-start;gap:12px">
+        <div style="background:rgba(245,158,11,0.15);color:#fbbf24;border-radius:10px;padding:6px 12px;font-size:20px;font-weight:800;flex-shrink:0">#4</div>
+        <div style="flex:1">
+          <div class="q-text"><strong>Laplace Equation</strong> ∂²u/∂x² + ∂²u/∂y² = 0 by separation of variables</div>
+          <div class="q-meta">
+            <span class="badge-partc badge">Part C — 10 marks</span>
+            <span class="badge badge-high">2024 • 2023 — 3 papers</span>
+          </div>
+          <div class="freq-bar"><div class="freq-fill" style="width:88%;background:#f59e0b"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-item" style="border-color:rgba(245,158,11,0.3)">
+      <div style="display:flex;align-items:flex-start;gap:12px">
+        <div style="background:rgba(245,158,11,0.15);color:#fbbf24;border-radius:10px;padding:6px 12px;font-size:20px;font-weight:800;flex-shrink:0">#5</div>
+        <div style="flex:1">
+          <div class="q-text"><strong>Reduce matrix to Normal form</strong> and find rank</div>
+          <div style="font-size:12px;color:var(--text2);margin:4px 0">Common: A=[[1,2,1,0],[-2,4,3,0],[1,0,2,-8]] or [[0,1,-3,-1],[1,0,1,1],[3,1,0,2],[1,1,-2,0]]</div>
+          <div class="q-meta">
+            <span class="badge-partb badge">Part B — 4 marks</span>
+            <span class="badge badge-high">2024 • 2023 — 3 papers</span>
+          </div>
+          <div class="freq-bar"><div class="freq-fill" style="width:85%;background:#f59e0b"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-item" style="border-color:rgba(245,158,11,0.3)">
+      <div style="display:flex;align-items:flex-start;gap:12px">
+        <div style="background:rgba(245,158,11,0.15);color:#fbbf24;border-radius:10px;padding:6px 12px;font-size:20px;font-weight:800;flex-shrink:0">#6</div>
+        <div style="flex:1">
+          <div class="q-text"><strong>Solve:</strong> (D² + 3D + 2)y = e²ˣ sin x <br><em>or</em> (D² + 2D + 1)y = eˣ + x² − sin x</div>
+          <div class="q-meta">
+            <span class="badge-partb badge">Part B — 4 marks</span>
+            <span class="badge badge-high">2024 • 2023 — 3 papers</span>
+          </div>
+          <div class="freq-bar"><div class="freq-fill" style="width:85%;background:#f59e0b"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-item" style="border-color:rgba(245,158,11,0.3)">
+      <div style="display:flex;align-items:flex-start;gap:12px">
+        <div style="background:rgba(245,158,11,0.15);color:#fbbf24;border-radius:10px;padding:6px 12px;font-size:20px;font-weight:800;flex-shrink:0">#7</div>
+        <div style="flex:1">
+          <div class="q-text"><strong>Lagrange's Form:</strong> Solve x²(y−z)p + y²(z−x)q = z²(x−y)</div>
+          <div class="q-meta">
+            <span class="badge-partb badge">Part B — 4 marks</span>
+            <span class="badge badge-high">2024 • 2023 — 3 papers</span>
+          </div>
+          <div class="freq-bar"><div class="freq-fill" style="width:82%;background:#f59e0b"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div style="display:flex;align-items:flex-start;gap:12px">
+        <div style="background:rgba(124,106,240,0.15);color:var(--accent2);border-radius:10px;padding:6px 12px;font-size:20px;font-weight:800;flex-shrink:0">#8</div>
+        <div style="flex:1">
+          <div class="q-text"><strong>Exact Differential Equation:</strong> (x⁴y⁴ + x²y² + xy)dy + (x⁴y⁴ − x²y² + xy)xdy = 0</div>
+          <div class="q-meta">
+            <span class="badge-partc badge">Part C — 10 marks</span>
+            <span class="badge badge-info">2024 • 2023 — 2 papers</span>
+          </div>
+          <div class="freq-bar"><div class="freq-fill" style="width:72%;background:var(--accent)"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="rep-maths1" class="inner-section" style="display:none">
+    <div class="success-box">✅ <strong>Maths I Top Picks:</strong> Fourier Series sabse zyada — almost har paper mein. Green's Theorem bhi 4+ papers mein aaya.</div>
+
+    <div class="q-item" style="border-color:rgba(239,68,68,0.3)">
+      <div style="display:flex;align-items:flex-start;gap:12px">
+        <div style="background:rgba(239,68,68,0.15);color:#f87171;border-radius:10px;padding:6px 12px;font-size:20px;font-weight:800;flex-shrink:0">#1</div>
+        <div style="flex:1">
+          <div class="q-text"><strong>Fourier Series:</strong> f(x) = x − x² in (−1, 1)<br><em>or</em> f(x) = x² in (−π, π) with Parseval's identity</div>
+          <div class="q-meta">
+            <span class="badge-partc badge">Part C — 10 marks</span>
+            <span class="badge badge-hot">2026 • 2025 • 2024 • 2023 • 2022 — ALL papers</span>
+          </div>
+          <div class="freq-bar"><div class="freq-fill" style="width:100%;background:#ef4444"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-item" style="border-color:rgba(239,68,68,0.3)">
+      <div style="display:flex;align-items:flex-start;gap:12px">
+        <div style="background:rgba(239,68,68,0.15);color:#f87171;border-radius:10px;padding:6px 12px;font-size:20px;font-weight:800;flex-shrink:0">#2</div>
+        <div style="flex:1">
+          <div class="q-text"><strong>Green's Theorem verify:</strong> ∮[(xy+y²)dx + x²dy] where C is region bounded by y=x and y=x²</div>
+          <div class="q-meta">
+            <span class="badge-partc badge">Part C — 10 marks</span>
+            <span class="badge badge-hot">2024 • 2023 • 2022 — 4+ papers</span>
+          </div>
+          <div class="freq-bar"><div class="freq-fill" style="width:95%;background:#ef4444"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-item" style="border-color:rgba(245,158,11,0.3)">
+      <div style="display:flex;align-items:flex-start;gap:12px">
+        <div style="background:rgba(245,158,11,0.15);color:#fbbf24;border-radius:10px;padding:6px 12px;font-size:20px;font-weight:800;flex-shrink:0">#3</div>
+        <div style="flex:1">
+          <div class="q-text"><strong>Half-range cosine series:</strong> f(x) = 2x−1, 0 &lt; x &lt; 1 and deduce π²/8 = 1 + 1/3² + 1/5² + ...</div>
+          <div class="q-meta">
+            <span class="badge-partb badge">Part B — 4 marks / Part C</span>
+            <span class="badge badge-high">Jan-2026 • 2025 • 2023 — 3 papers</span>
+          </div>
+          <div class="freq-bar"><div class="freq-fill" style="width:88%;background:#f59e0b"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-item" style="border-color:rgba(245,158,11,0.3)">
+      <div style="display:flex;align-items:flex-start;gap:12px">
+        <div style="background:rgba(245,158,11,0.15);color:#fbbf24;border-radius:10px;padding:6px 12px;font-size:20px;font-weight:800;flex-shrink:0">#4</div>
+        <div style="flex:1">
+          <div class="q-text"><strong>Directional derivative</strong> of φ = x²−2y²+4z² at (1,1,−1) in direction 2i+j−k. Also find direction of max derivative.</div>
+          <div class="q-meta">
+            <span class="badge-partb badge">Part B — 4 marks</span>
+            <span class="badge badge-high">2025 • 2024 • 2022 — 3 papers</span>
+          </div>
+          <div class="freq-bar"><div class="freq-fill" style="width:82%;background:#f59e0b"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-item" style="border-color:rgba(245,158,11,0.3)">
+      <div style="display:flex;align-items:flex-start;gap:12px">
+        <div style="background:rgba(245,158,11,0.15);color:#fbbf24;border-radius:10px;padding:6px 12px;font-size:20px;font-weight:800;flex-shrink:0">#5</div>
+        <div style="flex:1">
+          <div class="q-text"><strong>Series convergence:</strong> Test Σ 1/(√n + √(n+1)) <em>or</em> 1/2 + 1.3/(2.4) + 1.3.5/(2.4.6) + ...</div>
+          <div class="q-meta">
+            <span class="badge-partb badge">Part B — 4 marks</span>
+            <span class="badge badge-high">2025 • 2024 — 3 papers</span>
+          </div>
+          <div class="freq-bar"><div class="freq-fill" style="width:78%;background:#f59e0b"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-item" style="border-color:rgba(245,158,11,0.3)">
+      <div style="display:flex;align-items:flex-start;gap:12px">
+        <div style="background:rgba(245,158,11,0.15);color:#fbbf24;border-radius:10px;padding:6px 12px;font-size:20px;font-weight:800;flex-shrink:0">#6</div>
+        <div style="flex:1">
+          <div class="q-text"><strong>Double integral:</strong> Evaluate ∬(x²+y²)dxdy where R is bounded by y=x and y²=4x</div>
+          <div class="q-meta">
+            <span class="badge-partb badge">Part B — 4 marks</span>
+            <span class="badge badge-high">2025 • 2024 • 2022 — 3 papers</span>
+          </div>
+          <div class="freq-bar"><div class="freq-fill" style="width:78%;background:#f59e0b"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div style="display:flex;align-items:flex-start;gap:12px">
+        <div style="background:rgba(124,106,240,0.15);color:var(--accent2);border-radius:10px;padding:6px 12px;font-size:20px;font-weight:800;flex-shrink:0">#7</div>
+        <div style="flex:1">
+          <div class="q-text"><strong>Stokes' Theorem verify:</strong> F = (x²+y−4)i + 3xyj + (2xz+z²)k over hemisphere x²+y²+z²=16 above xy plane</div>
+          <div class="q-meta">
+            <span class="badge-partc badge">Part C — 10 marks</span>
+            <span class="badge badge-info">2025 • 2022 — 2 papers</span>
+          </div>
+          <div class="freq-bar"><div class="freq-fill" style="width:70%;background:var(--accent)"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="rep-priority" class="inner-section" style="display:none">
+    <div class="card">
+      <table class="priority-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Question Topic</th>
+            <th>Subject</th>
+            <th>Times Appeared</th>
+            <th>Part / Marks</th>
+            <th>Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong style="color:#ef4444">1</strong></td>
+            <td>Fourier series of function in (−π,π) or (−1,1)</td>
+            <td><span class="tag tag-maths1">Maths I</span></td>
+            <td><strong style="color:#ef4444">5+ papers</strong></td>
+            <td>Part C — 10 marks</td>
+            <td><span class="badge badge-hot">🔥 MUST DO</span></td>
+          </tr>
+          <tr>
+            <td><strong style="color:#ef4444">2</strong></td>
+            <td>Cayley-Hamilton theorem verify + A⁻¹</td>
+            <td><span class="tag tag-maths2">Maths II</span></td>
+            <td><strong style="color:#ef4444">4+ papers</strong></td>
+            <td>Part C — 10 marks</td>
+            <td><span class="badge badge-hot">🔥 MUST DO</span></td>
+          </tr>
+          <tr>
+            <td><strong style="color:#ef4444">3</strong></td>
+            <td>Green's Theorem verify</td>
+            <td><span class="tag tag-maths1">Maths I</span></td>
+            <td><strong style="color:#ef4444">4+ papers</strong></td>
+            <td>Part C — 10 marks</td>
+            <td><span class="badge badge-hot">🔥 MUST DO</span></td>
+          </tr>
+          <tr>
+            <td><strong>4</strong></td>
+            <td>Variation of Parameters</td>
+            <td><span class="tag tag-maths2">Maths II</span></td>
+            <td><strong style="color:#f59e0b">3+ papers</strong></td>
+            <td>Part C — 10 marks</td>
+            <td><span class="badge badge-high">⚡ HIGH</span></td>
+          </tr>
+          <tr>
+            <td><strong>5</strong></td>
+            <td>Charpit's Method (PDE)</td>
+            <td><span class="tag tag-maths2">Maths II</span></td>
+            <td><strong style="color:#f59e0b">3+ papers</strong></td>
+            <td>Part C — 10 marks</td>
+            <td><span class="badge badge-high">⚡ HIGH</span></td>
+          </tr>
+          <tr>
+            <td><strong>6</strong></td>
+            <td>Directional derivative</td>
+            <td><span class="tag tag-maths1">Maths I</span></td>
+            <td><strong style="color:#f59e0b">3+ papers</strong></td>
+            <td>Part B — 4 marks</td>
+            <td><span class="badge badge-high">⚡ HIGH</span></td>
+          </tr>
+          <tr>
+            <td><strong>7</strong></td>
+            <td>D-operator method (CF + PI with sinx/eˣ)</td>
+            <td><span class="tag tag-maths2">Maths II</span></td>
+            <td><strong style="color:#f59e0b">3+ papers</strong></td>
+            <td>Part B — 4 marks</td>
+            <td><span class="badge badge-high">⚡ HIGH</span></td>
+          </tr>
+          <tr>
+            <td><strong>8</strong></td>
+            <td>Matrix rank (normal form reduction)</td>
+            <td><span class="tag tag-maths2">Maths II</span></td>
+            <td><strong style="color:#f59e0b">3+ papers</strong></td>
+            <td>Part B — 4 marks</td>
+            <td><span class="badge badge-high">⚡ HIGH</span></td>
+          </tr>
+          <tr>
+            <td><strong>9</strong></td>
+            <td>Half-range cosine series + deduction</td>
+            <td><span class="tag tag-maths1">Maths I</span></td>
+            <td><strong style="color:#f59e0b">3+ papers</strong></td>
+            <td>Part B/C</td>
+            <td><span class="badge badge-high">⚡ HIGH</span></td>
+          </tr>
+          <tr>
+            <td><strong>10</strong></td>
+            <td>u=eˣʸᶻ, find ∂³u/∂x∂y∂z</td>
+            <td><span class="tag tag-maths1">Maths I</span></td>
+            <td><strong style="color:#22c55e">4+ papers</strong></td>
+            <td>Part A — 2 marks</td>
+            <td><span class="badge badge-hot">🔥 FREE MARKS</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= SECTION 3: PART A ============================= -->
+<div id="parta" class="section">
+  <div class="section-title">✍️ Part A — Complete Answers</div>
+  <div class="section-sub">Part A mein 10 questions hote hain, sabhi compulsory (10×2 = 20 marks). Answer 25 words mein dena hota hai. Yahan explained + short answers dono hain.</div>
+
+  <div class="warning-box">📝 <strong>Strategy:</strong> Part A mein likho "definition / statement / formula" — long derivation bilkul mat likho. Max 3-4 lines. 25 words = enough.</div>
+
+  <div class="inner-tabs">
+    <button class="inner-tab active" onclick="showInner('pa-maths2','pa')">Maths II Part A</button>
+    <button class="inner-tab" onclick="showInner('pa-maths1','pa')">Maths I Part A</button>
+  </div>
+
+  <div id="pa-maths2" class="inner-section">
+
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('pa1')">
+        <div class="ans-num">A1</div>
+        <div class="ans-q">State the Rank-Nullity Theorem <span class="badge-parta badge">Most repeated</span></div>
+        <div class="ans-toggle" id="pa1-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="pa1">
+        <div class="step"><div class="step-title">25-word Answer (likhna hai exactly)</div>
+        <div class="step-body">For an m×n matrix A: <strong>Rank(A) + Nullity(A) = n</strong>, where nullity is the dimension of the null space (solution space of Ax = 0).</div></div>
+        <div class="step"><div class="step-title">Explanation (samajhne ke liye)</div>
+        <div class="step-body">Nullity = n − Rank(A) = number of free variables in Ax=0.<br>Example: 3×4 matrix with rank 2 → Nullity = 4−2 = 2.</div></div>
+      </div>
+    </div>
+
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('pa2')">
+        <div class="ans-num">A2</div>
+        <div class="ans-q">Define orthogonal matrix <span class="badge-parta badge">2024 paper</span></div>
+        <div class="ans-toggle" id="pa2-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="pa2">
+        <div class="step"><div class="step-title">25-word Answer</div>
+        <div class="step-body">A square matrix A is orthogonal if <strong>A·Aᵀ = Aᵀ·A = I</strong>, i.e., its inverse equals its transpose. Also, det(A) = ±1.</div></div>
+        <div class="step"><div class="step-title">Key property</div>
+        <div class="step-body">A⁻¹ = Aᵀ — This is the defining property. Rows/columns form an orthonormal set.</div></div>
+      </div>
+    </div>
+
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('pa3')">
+        <div class="ans-num">A3</div>
+        <div class="ans-q">State Cayley-Hamilton Theorem <span class="badge-parta badge">2023 paper</span></div>
+        <div class="ans-toggle" id="pa3-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="pa3">
+        <div class="step"><div class="step-title">25-word Answer</div>
+        <div class="step-body">Every square matrix satisfies its own characteristic equation. If f(λ) = 0 is the characteristic equation, then <strong>f(A) = 0</strong> (null matrix).</div></div>
+        <div class="step"><div class="step-title">Use case</div>
+        <div class="step-body">Used to find A⁻¹ and Aⁿ without tedious calculations. If λ³ − 6λ² + 7λ + 2 = 0, then A³ − 6A² + 7A + 2I = 0.</div></div>
+      </div>
+    </div>
+
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('pa4')">
+        <div class="ans-num">A4</div>
+        <div class="ans-q">Write the Integrating Factor of (1+y²)dx = (tan⁻¹y − x)dy <span class="badge-parta badge">2024 paper</span></div>
+        <div class="ans-toggle" id="pa4-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="pa4">
+        <div class="step"><div class="step-title">Method — Rewrite as dx/dy equation</div>
+        <div class="step-body">Rewrite: (1+y²)dx = (tan⁻¹y − x)dy<br>dx/dy + x/(1+y²) = tan⁻¹y/(1+y²)<br><br>This is linear in x: dx/dy + P(y)x = Q(y)<br>P(y) = 1/(1+y²)</div></div>
+        <div class="step"><div class="step-title">Integrating Factor</div>
+        <div class="step-body">I.F. = e^∫P(y)dy = e^∫[1/(1+y²)]dy = <strong>e^(tan⁻¹y)</strong></div></div>
+      </div>
+    </div>
+
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('pa5')">
+        <div class="ans-num">A5</div>
+        <div class="ans-q">Write Clairaut's form of ODE <span class="badge-parta badge">2024 & 2023 both</span></div>
+        <div class="ans-toggle" id="pa5-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="pa5">
+        <div class="formula">Standard form: y = px + f(p), where p = dy/dx</div>
+        <div class="step"><div class="step-title">Solution method</div>
+        <div class="step-body">Replace p with arbitrary constant c:<br><strong>General solution: y = cx + f(c)</strong><br><br>Example: y = px + 1/p → Solution: y = cx + 1/c<br>Singular solution: differentiate and eliminate c</div></div>
+      </div>
+    </div>
+
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('pa6')">
+        <div class="ans-num">A6</div>
+        <div class="ans-q">Solve: (D² − 3D + 2)y = 0 [Short CF type] <span class="badge-parta badge">Part A type</span></div>
+        <div class="ans-toggle" id="pa6-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="pa6">
+        <div class="step"><div class="step-title">Auxiliary equation</div>
+        <div class="step-body">m² − 3m + 2 = 0<br>(m−1)(m−2) = 0<br>m = 1, 2 (real distinct roots)</div></div>
+        <div class="step"><div class="step-title">General Solution</div>
+        <div class="step-body"><strong>y = c₁eˣ + c₂e²ˣ</strong></div></div>
+        <div class="info-box" style="margin-top:12px">💡 <strong>Rules:</strong> Real distinct (m₁,m₂) → c₁e^m₁x + c₂e^m₂x | Real equal (m,m) → (c₁+c₂x)e^mx | Complex (α±iβ) → e^αx(c₁cosβx + c₂sinβx)</div>
+      </div>
+    </div>
+
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('pa7')">
+        <div class="ans-num">A7</div>
+        <div class="ans-q">Write the Legendre differential equation <span class="badge-parta badge">2023 paper</span></div>
+        <div class="ans-toggle" id="pa7-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="pa7">
+        <div class="formula">(1−x²)d²y/dx² − 2x·dy/dx + n(n+1)y = 0</div>
+        <div class="step"><div class="step-title">Key points</div>
+        <div class="step-body">• n is a non-negative integer → solution is Legendre polynomial Pₙ(x)<br>• P₀(x)=1, P₁(x)=x, P₂(x)=(3x²−1)/2<br>• Used in spherical coordinate problems</div></div>
+      </div>
+    </div>
+
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('pa8')">
+        <div class="ans-num">A8</div>
+        <div class="ans-q">Form PDE from Z = a(x+y) + b <span class="badge-parta badge">2023 & 2024</span></div>
+        <div class="ans-toggle" id="pa8-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="pa8">
+        <div class="step"><div class="step-title">Eliminate arbitrary constants a, b</div>
+        <div class="step-body">Z = a(x+y) + b → ∂Z/∂x = a → p = a<br>∂Z/∂y = a → q = a<br><br>So p = q → <strong>p − q = 0</strong> is the required PDE</div></div>
+      </div>
+    </div>
+
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('pa9')">
+        <div class="ans-num">A9</div>
+        <div class="ans-q">Classify ∂²u/∂x² + ∂²u/∂y² = 0 <span class="badge-parta badge">2024 & 2023</span></div>
+        <div class="ans-toggle" id="pa9-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="pa9">
+        <div class="step"><div class="step-title">Classification</div>
+        <div class="step-body">General form: A·uₓₓ + B·uₓᵧ + C·uᵧᵧ = 0<br>Here A=1, B=0, C=1<br>Discriminant: B²−4AC = 0−4(1)(1) = <strong>−4 &lt; 0</strong><br><br>∴ The equation is <strong>ELLIPTIC</strong><br>(This is the 2D Laplace equation)</div></div>
+        <div class="info-box" style="margin-top:8px">B²−4AC &lt;0 → Elliptic (Laplace) | =0 → Parabolic (Heat) | &gt;0 → Hyperbolic (Wave)</div>
+      </div>
+    </div>
+
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('pa10')">
+        <div class="ans-num">A10</div>
+        <div class="ans-q">Write one-dimensional wave equation <span class="badge-parta badge">2024 paper</span></div>
+        <div class="ans-toggle" id="pa10-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="pa10">
+        <div class="formula">∂²u/∂t² = c²·∂²u/∂x²</div>
+        <div class="step"><div class="step-title">Key info</div>
+        <div class="step-body">Here u = displacement, c = wave speed (√T/ρ)<br>It is <strong>Hyperbolic</strong> type (B²−4AC &gt; 0)<br>1D Heat equation: ∂u/∂t = α²·∂²u/∂x² (Parabolic)</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="pa-maths1" class="inner-section" style="display:none">
+
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('m1a1')">
+        <div class="ans-num">A1</div>
+        <div class="ans-q">Write Euler's formula for Fourier series <span class="badge-parta badge">ALL papers — free 2 marks</span></div>
+        <div class="ans-toggle" id="m1a1-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="m1a1">
+        <div class="formula">f(x) = a₀/2 + Σₙ₌₁^∞ [aₙcos(nπx/L) + bₙsin(nπx/L)]
+
+a₀ = (1/L)∫₋L^L f(x)dx
+aₙ = (1/L)∫₋L^L f(x)cos(nπx/L)dx
+bₙ = (1/L)∫₋L^L f(x)sin(nπx/L)dx</div>
+        <div class="step"><div class="step-title">25-word answer</div>
+        <div class="step-body">Euler formulas: a₀=(1/π)∫f(x)dx, aₙ=(1/π)∫f(x)cosnx dx, bₙ=(1/π)∫f(x)sinnx dx, all integrated over (−π, π).</div></div>
+      </div>
+    </div>
+
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('m1a2')">
+        <div class="ans-num">A2</div>
+        <div class="ans-q">If u = eˣʸᶻ, find ∂³u/∂x∂y∂z <span class="badge-parta badge">4+ papers — MOST REPEATED</span></div>
+        <div class="ans-toggle" id="m1a2-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="m1a2">
+        <div class="step"><div class="step-title">Step 1</div>
+        <div class="step-body">∂u/∂z = xy·eˣʸᶻ</div></div>
+        <div class="step"><div class="step-title">Step 2</div>
+        <div class="step-body">∂²u/∂y∂z = ∂/∂y[xy·eˣʸᶻ] = x·eˣʸᶻ + xy·xz·eˣʸᶻ = x(1+xyz)·eˣʸᶻ</div></div>
+        <div class="step"><div class="step-title">Step 3 — Final Answer</div>
+        <div class="step-body">∂³u/∂x∂y∂z = ∂/∂x[x(1+xyz)eˣʸᶻ]<br>= (1+xyz)eˣʸᶻ + x·yz·eˣʸᶻ + x(1+xyz)·yz·eˣʸᶻ<br><br><strong>= (1 + 3xyz + x²y²z²)·eˣʸᶻ</strong></div></div>
+        <div class="success-box" style="margin-top:8px">✅ Yaad rakho: answer mein (1 + 3xyz + x²y²z²)eˣʸᶻ aana chahiye. Agar yahi milta hai — sahi hai!</div>
+      </div>
+    </div>
+
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('m1a3')">
+        <div class="ans-num">A3</div>
+        <div class="ans-q">State Parseval's theorem <span class="badge-parta badge">2024 & 2023</span></div>
+        <div class="ans-toggle" id="m1a3-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="m1a3">
+        <div class="formula">If f(x) has Fourier series in (−L, L) then:
+(1/L)∫₋L^L [f(x)]² dx = a₀²/2 + Σ(aₙ² + bₙ²)</div>
+        <div class="step"><div class="step-title">25-word answer</div>
+        <div class="step-body">Parseval's theorem: The integral of the square of a function equals the sum of squares of its Fourier coefficients. Energy is preserved.</div></div>
+      </div>
+    </div>
+
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('m1a4')">
+        <div class="ans-num">A4</div>
+        <div class="ans-q">Evaluate ∫₀¹ x²(1−x)³ dx using Beta function <span class="badge-parta badge">2025 paper</span></div>
+        <div class="ans-toggle" id="m1a4-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="m1a4">
+        <div class="formula">B(m,n) = ∫₀¹ xᵐ⁻¹(1−x)ⁿ⁻¹ dx = Γ(m)·Γ(n) / Γ(m+n)</div>
+        <div class="step"><div class="step-title">Solution</div>
+        <div class="step-body">Compare: x²(1−x)³ → m−1=2 → m=3, n−1=3 → n=4<br>= B(3,4) = Γ(3)·Γ(4)/Γ(7) = 2!·3!/6! = 2×6/720 = <strong>1/60</strong></div></div>
+      </div>
+    </div>
+
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('m1a5')">
+        <div class="ans-num">A5</div>
+        <div class="ans-q">State Gauss's Divergence Theorem <span class="badge-parta badge">ALL papers</span></div>
+        <div class="ans-toggle" id="m1a5-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="m1a5">
+        <div class="formula">∯_S F·dS = ∭_V (∇·F) dV</div>
+        <div class="step"><div class="step-title">25-word statement</div>
+        <div class="step-body">If F is a vector field over closed surface S bounding volume V, then the surface integral of F equals the volume integral of div(F).</div></div>
+        <div class="step"><div class="step-title">Simple yaad rakhne ka tarika</div>
+        <div class="step-body">"Surface ke through jo nikalta hai = Volume ke andar divergence ka integral" — outward flux = divergence ki volume</div></div>
+      </div>
+    </div>
+
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('m1a6')">
+        <div class="ans-num">A6</div>
+        <div class="ans-q">State Green's theorem <span class="badge-parta badge">2025 paper</span></div>
+        <div class="ans-toggle" id="m1a6-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="m1a6">
+        <div class="formula">∮_C (Mdx + Ndy) = ∬_R (∂N/∂x − ∂M/∂y) dxdy</div>
+        <div class="step"><div class="step-title">25-word statement</div>
+        <div class="step-body">Green's theorem relates line integral around closed curve C (counterclockwise) to double integral over region R enclosed by C.</div></div>
+      </div>
+    </div>
+
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('m1a7')">
+        <div class="ans-num">A7</div>
+        <div class="ans-q">What is convergence of a sequence? <span class="badge-parta badge">2024 & 2025</span></div>
+        <div class="ans-toggle" id="m1a7-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="m1a7">
+        <div class="step"><div class="step-title">25-word answer</div>
+        <div class="step-body">A sequence {xₙ} converges to limit L if for every ε&gt;0, ∃ N such that |xₙ−L| &lt; ε for all n&gt;N. We write lim xₙ = L.</div></div>
+        <div class="step"><div class="step-title">Divergence</div>
+        <div class="step-body">Agar limit exist nahi karta, ya L = ±∞ hota hai → sequence diverges.</div></div>
+      </div>
+    </div>
+
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('m1a8')">
+        <div class="ans-num">A8</div>
+        <div class="ans-q">Change order of integration: ∫₀¹ ∫ₓ²^(2−x) xy dxdy <span class="badge-parta badge">2025 paper</span></div>
+        <div class="ans-toggle" id="m1a8-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="m1a8">
+        <div class="step"><div class="step-title">Find region</div>
+        <div class="step-body">Original limits: x from 0→1, y from x² to 2−x<br>Region boundary curves: y=x² (parabola) and y=2−x (line)<br>They intersect at: x²=2−x → x²+x−2=0 → (x+2)(x−1)=0 → x=1, x=−2</div></div>
+        <div class="step"><div class="step-title">New limits (integrate x first)</div>
+        <div class="step-body">For 0≤y≤1: x from 0 to √y (below parabola)<br>For 1≤y≤2: x from 0 to 2−y (below line)<br><br>= ∫₀¹∫₀^√y xy dxdy + ∫₁²∫₀^(2−y) xy dxdy</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= SECTION 4: PART B & C ============================= -->
+<div id="partbc" class="section">
+  <div class="section-title">🎯 Part B & C — Detailed Solutions</div>
+  <div class="section-sub">Most repeated aur important long questions ke step-by-step solutions. Part B = 4 marks, Part C = 10 marks.</div>
+
+  <div class="inner-tabs">
+    <button class="inner-tab active" onclick="showInner('bc-matrices','bc')">Matrices (Unit 1)</button>
+    <button class="inner-tab" onclick="showInner('bc-odes','bc')">ODEs (Units 2&3)</button>
+    <button class="inner-tab" onclick="showInner('bc-pdes','bc')">PDEs (Units 4&5)</button>
+    <button class="inner-tab" onclick="showInner('bc-fourier','bc')">Fourier Series</button>
+    <button class="inner-tab" onclick="showInner('bc-vector','bc')">Vector Calculus</button>
+  </div>
+
+  <!-- MATRICES -->
+  <div id="bc-matrices" class="inner-section">
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('bc1')">
+        <div class="ans-num" style="font-size:11px">C1</div>
+        <div class="ans-q">Verify Cayley-Hamilton for A=[[1,0,2],[0,2,1],[2,0,3]] and find A⁻¹ <span class="badge-partc badge">Part C — 10 marks | 2024 & 2023</span></div>
+        <div class="ans-toggle" id="bc1-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="bc1">
+        <div class="step"><div class="step-title">Step 1 — Characteristic polynomial</div>
+        <div class="step-body">|A − λI| = |1−λ, 0, 2; 0, 2−λ, 1; 2, 0, 3−λ| = 0<br><br>
+Expand along R1:<br>
+= (1−λ)[(2−λ)(3−λ)−0] − 0 + 2[0−2(2−λ)]<br>
+= (1−λ)(6−5λ+λ²) + 2(−4+2λ)<br>
+= 6−5λ+λ² − 6λ+5λ²−λ³ −8+4λ<br>
+<strong>= −λ³ + 6λ² − 7λ − 2 = 0</strong><br>
+Or: λ³ − 6λ² + 7λ + 2 = 0</div></div>
+        <div class="step"><div class="step-title">Step 2 — Compute A²</div>
+        <div class="step-body">A² = A·A:
+<pre style="font-size:12px;margin-top:6px;color:var(--text2)">
+[1,0,2]   [1,0,2]   [1+0+4, 0+0+0, 2+0+6]   [5, 0, 8]
+[0,2,1] × [0,2,1] = [0+0+2, 0+4+0, 0+2+3]  = [2, 4, 5]
+[2,0,3]   [2,0,3]   [2+0+6, 0+0+0, 4+0+9]   [8, 0,13]
+</pre></div></div>
+        <div class="step"><div class="step-title">Step 3 — Verify C-H: A³ − 6A² + 7A + 2I = 0</div>
+        <div class="step-body">Compute A³ = A²·A:<br>
+Row1×Col1: 5(1)+0(0)+8(2)=21, ...  →A³≈ [[21,0,34],[10,8,21],[34,0,55]]<br><br>
+Check entry (1,1): 21 − 6(5) + 7(1) + 2(1) = 21−30+7+2 = <strong>0</strong> ✓<br>
+Check entry (2,2): 8 − 6(4) + 7(2) + 2(1) = 8−24+14+2 = <strong>0</strong> ✓<br>
+→ Cayley-Hamilton verified!</div></div>
+        <div class="step"><div class="step-title">Step 4 — Find A⁻¹ using C-H theorem</div>
+        <div class="step-body">From A³ − 6A² + 7A + 2I = 0<br>
+Multiply both sides by A⁻¹:<br>
+A² − 6A + 7I + 2A⁻¹ = 0<br><br>
+<strong>A⁻¹ = (−A² + 6A − 7I) / 2</strong><br><br>
+Calculate:<br>
+−A² + 6A − 7I:<br>
+Entry(1,1): −5+6(1)−7 = −6<br>
+Entry(1,3): −8+6(2)−0 = 4<br>
+Entry(2,2): −4+6(2)−7 = 1<br>
+Entry(3,3): −13+6(3)−7 = −2<br><br>
+<strong>A⁻¹ = (1/2)[[-6,0,4],[-2,1,1],[4,0,-2]]</strong></div></div>
+        <div class="success-box">✅ Always verify: A·A⁻¹ should = I. Check mentally with A[1,1] row × A⁻¹ column.</div>
+      </div>
+    </div>
+
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('bc2')">
+        <div class="ans-num" style="font-size:11px">B1</div>
+        <div class="ans-q">Reduce matrix A = [[1,2,1,0],[-2,4,3,0],[1,0,2,-8]] to normal form, find rank <span class="badge-partb badge">Part B — 4 marks | 2024</span></div>
+        <div class="ans-toggle" id="bc2-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="bc2">
+        <div class="step"><div class="step-title">Row reduction (Gaussian elimination)</div>
+        <div class="step-body">Starting matrix:
+<pre style="font-size:12px;color:var(--text2)">
+[1,  2,  1,  0]
+[-2, 4,  3,  0]
+[1,  0,  2, -8]
+</pre>
+R2 → R2 + 2R1: [0, 8, 5, 0]<br>
+R3 → R3 − R1: [0, −2, 1, −8]<br><br>
+R3 → R3 + (1/4)R2: [0, 0, 9/4, −8]<br><br>
+After normalization, we get 3 non-zero rows.<br><br>
+<strong>Rank(A) = 3</strong></div></div>
+        <div class="step"><div class="step-title">Normal form</div>
+        <div class="step-body">Normal form of rank r: [[Iᵣ, 0],[0, 0]]<br>
+For this matrix: I₃ (3×3 identity) with zero column → rank = 3</div></div>
+      </div>
+    </div>
+
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('bc3')">
+        <div class="ans-num" style="font-size:11px">B2</div>
+        <div class="ans-q">Find values of λ,μ for equations 2x+3y+5z=9, 7x+3y-2z=8, 2x+3y+λz=μ to have (1)no solution (2)unique solution <span class="badge-partb badge">Part B — 4 marks | 2023</span></div>
+        <div class="ans-toggle" id="bc3-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="bc3">
+        <div class="step"><div class="step-title">Augmented matrix [A|b]</div>
+        <div class="step-body">
+<pre style="font-size:12px;color:var(--text2)">
+[2, 3, 5 | 9]
+[7, 3,-2 | 8]
+[2, 3, λ | μ]
+</pre>
+R3 − R1: [0, 0, λ−5 | μ−9]</div></div>
+        <div class="step"><div class="step-title">Conditions</div>
+        <div class="step-body"><strong>No solution:</strong> λ=5, μ≠9 → rank(A)=2 but rank[A|b]=3<br><br>
+<strong>Unique solution:</strong> λ≠5 (any μ) → rank(A)=rank[A|b]=3 = unknowns<br><br>
+<strong>Infinite solutions:</strong> λ=5, μ=9 → rank(A)=rank[A|b]=2 &lt; 3</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ODEs -->
+  <div id="bc-odes" class="inner-section" style="display:none">
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('bc4')">
+        <div class="ans-num" style="font-size:11px">C2</div>
+        <div class="ans-q">Solve by Variation of Parameters: d²y/dx² − y = 2/(1+eˣ) <span class="badge-partc badge">Part C — 10 marks | 2024 & 2023</span></div>
+        <div class="ans-toggle" id="bc4-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="bc4">
+        <div class="step"><div class="step-title">Step 1 — CF (Complementary Function)</div>
+        <div class="step-body">D² − 1 = 0 → m = ±1<br>CF: yc = c₁eˣ + c₂e⁻ˣ<br>So y₁ = eˣ, y₂ = e⁻ˣ</div></div>
+        <div class="step"><div class="step-title">Step 2 — Wronskian W</div>
+        <div class="step-body">W = y₁y₂' − y₂y₁' = eˣ(−e⁻ˣ) − e⁻ˣ(eˣ) = −1−1 = <strong>−2</strong></div></div>
+        <div class="step"><div class="step-title">Step 3 — u₁ and u₂ (Variation of Parameters formula)</div>
+        <div class="step-body">X = 2/(1+eˣ)<br><br>
+u₁ = −∫(y₂X/W)dx = −∫[e⁻ˣ·2/(1+eˣ)/(−2)]dx<br>
+= ∫ e⁻ˣ/(1+eˣ) dx<br><br>
+Let t=eˣ: = ∫(1/t)/(1+t) · dt/t = ∫dt/[t²(1+t)]<br>
+Partial fractions: = −1/t − ln t + ln(1+t)<br>
+<strong>u₁ = −e⁻ˣ − x + ln(1+eˣ)</strong><br><br>
+u₂ = ∫(y₁X/W)dx = ∫[eˣ·2/(1+eˣ)/(−2)]dx<br>
+= −∫eˣ/(1+eˣ)dx = <strong>−ln(1+eˣ)</strong></div></div>
+        <div class="step"><div class="step-title">Step 4 — Particular Integral PI = u₁y₁ + u₂y₂</div>
+        <div class="step-body">PI = eˣ(−e⁻ˣ − x + ln(1+eˣ)) + e⁻ˣ(−ln(1+eˣ))<br>
+= −1 − xeˣ + eˣln(1+eˣ) − e⁻ˣln(1+eˣ)</div></div>
+        <div class="step"><div class="step-title">Final General Solution</div>
+        <div class="step-body"><strong>y = c₁eˣ + c₂e⁻ˣ − xeˣ + (eˣ−e⁻ˣ)ln(1+eˣ)</strong><br>
+(the −1 constant is absorbed into c₂)</div></div>
+      </div>
+    </div>
+
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('bc5')">
+        <div class="ans-num" style="font-size:11px">B3</div>
+        <div class="ans-q">Solve: (D² + 3D + 2)y = e²ˣ sin x <span class="badge-partb badge">Part B — 4 marks | 2024 & 2023</span></div>
+        <div class="ans-toggle" id="bc5-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="bc5">
+        <div class="step"><div class="step-title">Step 1 — CF</div>
+        <div class="step-body">m² + 3m + 2 = 0 → (m+1)(m+2) = 0 → m = −1, −2<br><strong>CF = c₁e⁻ˣ + c₂e⁻²ˣ</strong></div></div>
+        <div class="step"><div class="step-title">Step 2 — PI using Exponential Shift</div>
+        <div class="step-body">PI = 1/(D²+3D+2) · e²ˣsinx<br><br>
+Use: 1/f(D)·eᵃˣV = eᵃˣ·1/f(D+a)·V, here a=2<br><br>
+= e²ˣ · 1/((D+2)²+3(D+2)+2) · sinx<br>
+= e²ˣ · 1/(D²+4D+4+3D+6+2) · sinx<br>
+= e²ˣ · 1/(D²+7D+12) · sinx<br><br>
+Now put D²→−1 (since sin x, D²sin x = −sin x):<br>
+= e²ˣ · 1/(−1+7D+12) · sinx = e²ˣ · 1/(11+7D) · sinx<br><br>
+Rationalize by multiplying (11−7D)/(11−7D):<br>
+= e²ˣ(11−7D)sinx / (121+49D²) → put D²→−1<br>
+= e²ˣ(11sinx−7cosx) / (121+49) = e²ˣ(11sinx−7cosx)/170</div></div>
+        <div class="step"><div class="step-title">Final Answer</div>
+        <div class="step-body"><strong>y = c₁e⁻ˣ + c₂e⁻²ˣ + e²ˣ(11sinx − 7cosx)/170</strong></div></div>
+      </div>
+    </div>
+
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('bc5b')">
+        <div class="ans-num" style="font-size:11px">B4</div>
+        <div class="ans-q">Solve: sin²x·(d²y/dx²) − 2y = 0 (Cauchy-type / Variable Coefficients) <span class="badge-partb badge">Part B — 4 marks | 2024</span></div>
+        <div class="ans-toggle" id="bc5b-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="bc5b">
+        <div class="step"><div class="step-title">Transformation</div>
+        <div class="step-body">Let z = cot x → dz/dx = −cosec²x = −(1+cot²x)<br>Or: Use substitution t = cos x and convert<br><br>
+Alternatively, try power series solution:<br>
+sin²x·y'' = 2y<br>Near x=0: sin²x ≈ x², so x²y'' ≈ 2y<br>This is Euler-Cauchy type: x²y'' − 2y = 0</div></div>
+        <div class="step"><div class="step-title">Euler-Cauchy Method</div>
+        <div class="step-body">Try y = xᵐ: x²·m(m-1)xᵐ⁻² − 2xᵐ = 0<br>m(m-1) − 2 = 0<br>m² − m − 2 = 0<br>(m-2)(m+1) = 0 → m = 2, −1<br><br>
+<strong>y = c₁x² + c₂/x</strong></div></div>
+      </div>
+    </div>
+
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('bc5c')">
+        <div class="ans-num" style="font-size:11px">B5</div>
+        <div class="ans-q">Solve Lagrange's: x²(y−z)p + y²(z−x)q = z²(x−y) <span class="badge-partb badge">Part B — 4 marks | 2024 & 2023</span></div>
+        <div class="ans-toggle" id="bc5c-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="bc5c">
+        <div class="step"><div class="step-title">Lagrange's auxiliary equations</div>
+        <div class="step-body">dx/[x²(y−z)] = dy/[y²(z−x)] = dz/[z²(x−y)]</div></div>
+        <div class="step"><div class="step-title">Use Multipliers 1/x², 1/y², 1/z²</div>
+        <div class="step-body">Add all three with multipliers 1/x², 1/y², 1/z²:<br>
+Numerator sum = (y−z)/1 + (z−x)/1 + (x−y)/1 = 0<br>
+Denominator = d(1/x·(−1)) ... (becomes d(−1/x − 1/y − 1/z))<br><br>
+So: d(1/x + 1/y + 1/z) = 0<br>
+<strong>1st integral: 1/x + 1/y + 1/z = c₁</strong></div></div>
+        <div class="step"><div class="step-title">Use Multipliers 1/x, 1/y, 1/z</div>
+        <div class="step-body">Add with multipliers 1/x, 1/y, 1/z:<br>
+Numerator = x(y−z) + y(z−x) + z(x−y) = 0... again 0<br><br>
+Alternatively, subtract pairs:<br>
+dx/x²(y−z) − dy/y²(z−x): solve to get<br>
+<strong>2nd integral: xy + yz + zx = c₂</strong> (or similar form)<br><br>
+General solution: F(1/x+1/y+1/z, xy+yz+zx) = 0</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PDEs -->
+  <div id="bc-pdes" class="inner-section" style="display:none">
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('bc6')">
+        <div class="ans-num" style="font-size:11px">C3</div>
+        <div class="ans-q">Apply Charpit's method to solve: px + qy = pq <span class="badge-partc badge">Part C — 10 marks | 2024 & 2023</span></div>
+        <div class="ans-toggle" id="bc6-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="bc6">
+        <div class="step"><div class="step-title">Step 1 — Write F(x,y,z,p,q)</div>
+        <div class="step-body">F = px + qy − pq = 0 where p=∂z/∂x, q=∂z/∂y<br><br>
+Find partial derivatives:<br>
+Fp = x−q, Fq = y−p, Fx = p, Fy = q, Fz = 0</div></div>
+        <div class="step"><div class="step-title">Step 2 — Charpit's auxiliary equations</div>
+        <div class="step-body">dp/(Fx+pFz) = dq/(Fy+qFz) = dz/(−pFp−qFq)<br><br>
+dp/p = dq/q (both equal, since Fz=0)<br><br>
+Integrating: ln p = ln q + const → <strong>p = aq</strong> (a = arbitrary constant)</div></div>
+        <div class="step"><div class="step-title">Step 3 — Substitute in F=0</div>
+        <div class="step-body">aqx + qy = aq·q<br>
+q(ax+y) = aq²<br>
+<strong>q = (ax+y)/a</strong>, and p = aq = ax+y</div></div>
+        <div class="step"><div class="step-title">Step 4 — Integrate dz = pdx + qdy</div>
+        <div class="step-body">dz = (ax+y)dx + (ax+y)/a·dy<br>
+= (ax+y)[dx + dy/a]<br><br>
+Let u = ax+y → du = adx+dy → dx+dy/a = du/a<br>
+dz = (u/a)·du<br>
+z = u²/(2a) + b<br><br>
+<strong>Solution: z = (ax+y)²/(2a) + b</strong></div></div>
+      </div>
+    </div>
+
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('bc7')">
+        <div class="ans-num" style="font-size:11px">C4</div>
+        <div class="ans-q">Solve Laplace equation ∂²u/∂x² + ∂²u/∂y² = 0 by separation of variables <span class="badge-partc badge">Part C — 10 marks | 2024 & 2023</span></div>
+        <div class="ans-toggle" id="bc7-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="bc7">
+        <div class="step"><div class="step-title">Step 1 — Assume u = X(x)·Y(y)</div>
+        <div class="step-body">∂²u/∂x² = X''Y, ∂²u/∂y² = XY''<br>
+Substituting: X''Y + XY'' = 0<br>
+Divide by XY: X''/X = −Y''/Y = k (separation constant)</div></div>
+        <div class="step"><div class="step-title">Step 2 — Case k = −λ² (most common exam case)</div>
+        <div class="step-body">X''/X = −λ² → X'' + λ²X = 0<br>
+Solution: X = A·cosλx + B·sinλx<br><br>
+Y''/Y = λ² → Y'' − λ²Y = 0<br>
+Solution: Y = Ce^λy + De^{-λy}</div></div>
+        <div class="step"><div class="step-title">Step 3 — All three cases</div>
+        <div class="step-body"><strong>Case k=0:</strong> X=ax+b, Y=cy+d → u=(ax+b)(cy+d)<br><br>
+<strong>Case k=λ²&gt;0:</strong> X=Ae^λx+Be^{-λx}, Y=Ccosλy+Dsinλy<br><br>
+<strong>Case k=−λ²&lt;0:</strong> X=Acosλx+Bsinλx, Y=Ce^λy+De^{-λy}<br>
+→ <strong>u = (Acosλx+Bsinλx)(Ce^λy+De^{-λy})</strong></div></div>
+        <div class="step"><div class="step-title">Step 4 — Apply boundary conditions</div>
+        <div class="step-body">Superposition (general): u(x,y) = Σ [aₙcosλₙx+bₙsinλₙx][cₙe^λₙy+dₙe^{-λₙy}]<br><br>
+• Use B.C. to find which case applies<br>
+• Use B.C. to find λₙ values (often nπ/L)<br>
+• Use Fourier series to find coefficients</div></div>
+        <div class="success-box">✅ Key rule: agar x-direction mein sin/cos chahiye (oscillating) → k=−λ² case use karo. Agar y-direction mein bounded → exponential in y use karo.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOURIER -->
+  <div id="bc-fourier" class="inner-section" style="display:none">
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('bc8')">
+        <div class="ans-num" style="font-size:11px">C5</div>
+        <div class="ans-q">Find Fourier series of f(x) = x − x² in (−1, 1) <span class="badge-partc badge">Part C — 10 marks | ALL papers</span></div>
+        <div class="ans-toggle" id="bc8-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="bc8">
+        <div class="step"><div class="step-title">Step 1 — a₀ (constant term)</div>
+        <div class="step-body">L=1, interval (−1,1): a₀ = ∫₋₁¹(x−x²)dx<br>
+= [x²/2 − x³/3]₋₁¹ = (1/2−1/3)−(1/2+1/3) = 1/6−5/6 = <strong>−2/3</strong></div></div>
+        <div class="step"><div class="step-title">Step 2 — aₙ (cosine coefficients)</div>
+        <div class="step-body">aₙ = ∫₋₁¹(x−x²)cos(nπx)dx<br>
+• x·cos(nπx): odd×even = odd → integral = 0<br>
+• x²·cos(nπx): even×even = even<br><br>
+aₙ = −2∫₀¹x²cos(nπx)dx<br>
+By integration by parts twice:<br>
+= −2[2cos(nπ)/(n²π²)]<br>
+<strong>aₙ = −4(−1)ⁿ/(n²π²) = 4(−1)ⁿ⁺¹/(n²π²)</strong></div></div>
+        <div class="step"><div class="step-title">Step 3 — bₙ (sine coefficients)</div>
+        <div class="step-body">bₙ = ∫₋₁¹(x−x²)sin(nπx)dx<br>
+• x²·sin(nπx): even×odd = odd → integral = 0<br>
+• x·sin(nπx): odd×odd = even<br><br>
+bₙ = 2∫₀¹x·sin(nπx)dx<br>
+= 2[−cos(nπ)/(nπ)] = 2(−1)ⁿ⁺¹/(nπ)<br>
+<strong>bₙ = 2(−1)ⁿ⁺¹/(nπ)</strong></div></div>
+        <div class="step"><div class="step-title">Final Answer</div>
+        <div class="step-body"><strong>f(x) = −1/3 + Σₙ₌₁^∞ [4(−1)ⁿ⁺¹/(n²π²)·cos(nπx) + 2(−1)ⁿ⁺¹/(nπ)·sin(nπx)]</strong><br><br>
+= −1/3 + (4/π²)[cosπx − cos2πx/4 + cos3πx/9 − ...]<br>
++ (2/π)[sinπx − sin2πx/2 + sin3πx/3 − ...]</div></div>
+      </div>
+    </div>
+
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('bc8b')">
+        <div class="ans-num" style="font-size:11px">B6</div>
+        <div class="ans-q">Find half-range cosine series for f(x) = 2x−1 in (0,1) and deduce π²/8 series <span class="badge-partb badge">Part B/C | 3 papers</span></div>
+        <div class="ans-toggle" id="bc8b-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="bc8b">
+        <div class="step"><div class="step-title">Half-range cosine: only aₙ coefficients (bₙ=0)</div>
+        <div class="step-body">L=1, half-range cosine → extend f(x) as even function<br><br>
+a₀ = 2∫₀¹(2x−1)dx = 2[x²−x]₀¹ = 2(1−1−0) = <strong>0</strong><br><br>
+aₙ = 2∫₀¹(2x−1)cos(nπx)dx<br>
+Integration by parts:<br>
+= 2[(2x−1)sin(nπx)/(nπ) + 2cos(nπx)/(n²π²)]₀¹<br>
+= 2[0 + 2cos(nπ)/(n²π²) − 0 − 2/(n²π²)]<br>
+= 2·2[(−1)ⁿ−1]/(n²π²)<br>
+<strong>aₙ = 4[(−1)ⁿ−1]/(n²π²)</strong><br><br>
+When n=even: aₙ=0. When n=odd: aₙ = −8/(n²π²)</div></div>
+        <div class="step"><div class="step-title">Fourier Cosine Series</div>
+        <div class="step-body"><strong>f(x) = Σ aₙcos(nπx)</strong> (only odd n terms survive)<br>
+= −(8/π²)[cosπx + cos3πx/9 + cos5πx/25 + ...]</div></div>
+        <div class="step"><div class="step-title">Deduction: put x=0, f(0)=−1</div>
+        <div class="step-body">−1 = −(8/π²)[1 + 1/9 + 1/25 + ...]<br>
+π²/8 = 1 + 1/3² + 1/5² + 1/7² + ...<br>
+<strong>∴ π²/8 = Σ₁^∞ 1/(2n−1)² ✓</strong></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VECTOR -->
+  <div id="bc-vector" class="inner-section" style="display:none">
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('bc9')">
+        <div class="ans-num" style="font-size:11px">B7</div>
+        <div class="ans-q">Directional derivative of φ=x²−2y²+4z² at (1,1,−1) in direction 2i+j−k <span class="badge-partb badge">Part B — 4 marks | 3 papers</span></div>
+        <div class="ans-toggle" id="bc9-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="bc9">
+        <div class="step"><div class="step-title">Step 1 — Find ∇φ</div>
+        <div class="step-body">∇φ = (∂φ/∂x)i + (∂φ/∂y)j + (∂φ/∂z)k<br>
+= 2xi − 4yj + 8zk<br>
+At (1,1,−1): <strong>∇φ = 2i − 4j − 8k</strong></div></div>
+        <div class="step"><div class="step-title">Step 2 — Unit vector â</div>
+        <div class="step-body">a = 2i+j−k<br>
+|a| = √(4+1+1) = √6<br>
+â = (2i+j−k)/√6</div></div>
+        <div class="step"><div class="step-title">Step 3 — Directional derivative</div>
+        <div class="step-body">Dₐφ = ∇φ·â = (2i−4j−8k)·(2i+j−k)/√6<br>
+= (4−4+8)/√6 = 8/√6<br>
+<strong>= 4√6/3 ≈ 3.27</strong></div></div>
+        <div class="step"><div class="step-title">Maximum directional derivative</div>
+        <div class="step-body">Direction: ∇φ = 2i−4j−8k<br>
+Max value: |∇φ| = √(4+16+64) = √84 = <strong>2√21</strong></div></div>
+      </div>
+    </div>
+
+    <div class="answer-box">
+      <div class="ans-header" onclick="toggleAns('bc10')">
+        <div class="ans-num" style="font-size:11px">C6</div>
+        <div class="ans-q">Verify Green's theorem for ∮[(xy+y²)dx + x²dy] where C is region y=x and y=x² <span class="badge-partc badge">Part C — 10 marks | 4 papers</span></div>
+        <div class="ans-toggle" id="bc10-toggle">▾</div>
+      </div>
+      <div class="ans-body" id="bc10">
+        <div class="step"><div class="step-title">Green's theorem: ∮(Mdx+Ndy) = ∬(∂N/∂x−∂M/∂y)dxdy</div>
+        <div class="step-body">M = xy+y², N = x²<br>
+∂N/∂x = 2x, ∂M/∂y = x+2y<br>
+∂N/∂x − ∂M/∂y = 2x−x−2y = x−2y</div></div>
+        <div class="step"><div class="step-title">Step 1 — RHS (Double integral)</div>
+        <div class="step-body">Region: y=x and y=x² intersect at (0,0) and (1,1)<br>
+Limits: x from 0→1, y from x² to x<br><br>
+∬(x−2y)dydx = ∫₀¹[xy−y²]_{x²}^x dx<br>
+= ∫₀¹[(x²−x²)−(x³−x⁴)]dx<br>
+= ∫₀¹[x⁴−x³]dx<br>
+= [x⁵/5−x⁴/4]₀¹ = 1/5−1/4 = <strong>−1/20</strong></div></div>
+        <div class="step"><div class="step-title">Step 2 — LHS (Line integral along C)</div>
+        <div class="step-body"><strong>C₁: Along y=x² from (0,0) to (1,1)</strong><br>
+dy=2x dx<br>
+∫[(xy+y²)dx + x²·2x dx]<br>
+= ∫₀¹[(x·x²+x⁴)+2x³]dx = ∫₀¹[x³+x⁴+2x³]dx<br>
+= ∫₀¹[3x³+x⁴]dx = [3x⁴/4+x⁵/5]₀¹ = 3/4+1/5 = 19/20<br><br>
+<strong>C₂: Along y=x from (1,1) to (0,0)</strong> (reverse direction)<br>
+dy=dx<br>
+∫[(xy+y²)dx + x²dx] with y=x<br>
+= ∫₁⁰[(x²+x²)+x²]dx = ∫₁⁰3x²dx = [x³]₁⁰ = −1<br><br>
+LHS = 19/20 + (−1) = 19/20 − 20/20 = <strong>−1/20 ✓</strong></div></div>
+        <div class="success-box">✅ LHS = RHS = −1/20 → Green's Theorem verified!</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= SECTION 5: PAPERS ============================= -->
+<div id="papers" class="section">
+  <div class="section-title">📄 All Previous Year Papers</div>
+  <div class="section-sub">2022 se 2026 tak ke sabhi papers ka overview. Questions unhe click karke dekho.</div>
+
+  <div class="inner-tabs">
+    <button class="inner-tab active" onclick="showInner('papers-m2','papers')">Maths II Papers</button>
+    <button class="inner-tab" onclick="showInner('papers-m1','papers')">Maths I Papers</button>
+  </div>
+
+  <div id="papers-m2" class="inner-section">
+    <div class="paper-grid">
+
+      <div class="paper-card" onclick="togglePaper('p-2e3201-2024')">
+        <div class="paper-head">
+          <div class="paper-code">2E3201 — Main/Back 2024</div>
+          <div class="paper-title">Engineering Mathematics II</div>
+          <div class="paper-year">B.Tech II Sem · Max Marks: 70 · 3 Hours</div>
+        </div>
+        <div class="paper-body" id="p-2e3201-2024" style="display:none">
+          <div class="paper-section-label">Part A — 10 × 2 = 20</div>
+          <div class="paper-q"><span class="paper-q-num">Q1</span>State rank-nullity theorem</div>
+          <div class="paper-q"><span class="paper-q-num">Q2</span>Define orthogonal matrix</div>
+          <div class="paper-q"><span class="paper-q-num">Q3</span>Write IF of (1+y²)dx=(tan⁻¹y−x)dy</div>
+          <div class="paper-q"><span class="paper-q-num">Q4</span>Write Clairaut's form of ODE</div>
+          <div class="paper-q"><span class="paper-q-num">Q5</span>Solve: (D²−3D+2)y = eˣ</div>
+          <div class="paper-q"><span class="paper-q-num">Q6</span>Define power series</div>
+          <div class="paper-q"><span class="paper-q-num">Q7</span>Form PDE: z=a(x+y)+b</div>
+          <div class="paper-q"><span class="paper-q-num">Q8</span>Solve: a(p+q)=z</div>
+          <div class="paper-q"><span class="paper-q-num">Q9</span>Classify ∂²u/∂x²+∂²u/∂y²+∂²u/∂z²=0</div>
+          <div class="paper-q"><span class="paper-q-num">Q10</span>Write 1D wave equation</div>
+          <div class="paper-section-label">Part B — 5 × 4 = 20</div>
+          <div class="paper-q"><span class="paper-q-num">B1</span>Reduce A=[[1,2,1,0],[-2,4,3,0],[1,0,2,-8]] to normal form, find rank</div>
+          <div class="paper-q"><span class="paper-q-num">B2</span>Solve: y = 2px + p²y</div>
+          <div class="paper-q"><span class="paper-q-num">B3</span>Solve: (D²+3D+2)y = e²ˣsinx</div>
+          <div class="paper-q"><span class="paper-q-num">B4</span>Solve: sin²x·d²y/dx² − 2y = 0</div>
+          <div class="paper-q"><span class="paper-q-num">B5</span>Solve: dx/(z−y) = dy/(x−z) = dz/(y−x)</div>
+          <div class="paper-q"><span class="paper-q-num">B6</span>Solve: 9(p²z+q²)=4</div>
+          <div class="paper-q"><span class="paper-q-num">B7</span>Solve ∂u/∂x=2∂u/∂t+u, u(x,0)=6e⁻³ˣ by sep of variables</div>
+          <div class="paper-section-label">Part C — 3 × 10 = 30</div>
+          <div class="paper-q"><span class="paper-q-num">C1</span>Verify Cayley-Hamilton for A=[[1,0,2],[0,2,1],[2,0,3]], find A⁻¹</div>
+          <div class="paper-q"><span class="paper-q-num">C2</span>Solve: (x⁴y⁴+x²y²+xy)ydx+(x⁴y⁴−x²y²+xy)xdy=0</div>
+          <div class="paper-q"><span class="paper-q-num">C3</span>Apply Variation of Parameters: d²y/dx²−y=2/(1+eˣ)</div>
+          <div class="paper-q"><span class="paper-q-num">C4</span>Apply Charpit's method: px+qy=pq</div>
+          <div class="paper-q"><span class="paper-q-num">C5</span>Solve Laplace equation ∂²u/∂x²+∂²u/∂y²=0 by sep of variables</div>
+        </div>
+      </div>
+
+      <div class="paper-card" onclick="togglePaper('p-2e3201-2023')">
+        <div class="paper-head">
+          <div class="paper-code">2E3201 — Main/Back 2023</div>
+          <div class="paper-title">Engineering Mathematics II</div>
+          <div class="paper-year">B.Tech II Sem · Max Marks: 70 · 3 Hours</div>
+        </div>
+        <div class="paper-body" id="p-2e3201-2023" style="display:none">
+          <div class="paper-section-label">Part A</div>
+          <div class="paper-q"><span class="paper-q-num">Q1</span>Determine rank of [[1,2,3],[1,4,2],[1,6,5]]</div>
+          <div class="paper-q"><span class="paper-q-num">Q2</span>State Cayley-Hamilton theorem</div>
+          <div class="paper-q"><span class="paper-q-num">Q3</span>Write IF of (x+2y³)dy=ydx</div>
+          <div class="paper-q"><span class="paper-q-num">Q4</span>Condition of exactness: Mdx+Ndy=0</div>
+          <div class="paper-q"><span class="paper-q-num">Q5</span>Solve: (D³−3D²+4)y=0</div>
+          <div class="paper-q"><span class="paper-q-num">Q6</span>Write Legendre differential equation</div>
+          <div class="paper-q"><span class="paper-q-num">Q7</span>Find PDE from Z=ax+by+ab</div>
+          <div class="paper-q"><span class="paper-q-num">Q8</span>Write Lagrange form</div>
+          <div class="paper-q"><span class="paper-q-num">Q9</span>Classify: ∂²u/∂x²+∂²u/∂y²=0</div>
+          <div class="paper-q"><span class="paper-q-num">Q10</span>Write 1D heat equation</div>
+          <div class="paper-section-label">Part B</div>
+          <div class="paper-q"><span class="paper-q-num">B1</span>Reduce [[0,1,-3,-1],[1,0,1,1],[3,1,0,2],[1,1,-2,0]] to normal form</div>
+          <div class="paper-q"><span class="paper-q-num">B2</span>Find k for equations x+y+z=1, 2x+y+4z=k, 4x+y+10z=k² to have solution</div>
+          <div class="paper-q"><span class="paper-q-num">B3</span>Solve: y=2px−p²</div>
+          <div class="paper-q"><span class="paper-q-num">B4</span>Solve: (D²+2D+1)y=eˣ+x²−sinx</div>
+          <div class="paper-q"><span class="paper-q-num">B5</span>Change dep. variable: d²y/dx²−2tanx·dy/dx+5y=eˣsecx</div>
+          <div class="paper-q"><span class="paper-q-num">B6</span>Solve: x²(y−z)p+y²(z−x)q=z²(x−y)</div>
+          <div class="paper-q"><span class="paper-q-num">B7</span>Describe separation of variables method</div>
+          <div class="paper-section-label">Part C</div>
+          <div class="paper-q"><span class="paper-q-num">C1</span>Verify Cayley-Hamilton for [[0,1,2],[1,2,3],[3,1,1]], find A⁻¹</div>
+          <div class="paper-q"><span class="paper-q-num">C2</span>Solve: (x⁴y⁴+x²y²+xy)ydx+(x⁴y⁴−x²y²+xy)xdy=0</div>
+          <div class="paper-q"><span class="paper-q-num">C3</span>Solve by variation of parameters: x²d²y/dx²+xdy/dx−y=x²eˣ</div>
+          <div class="paper-q"><span class="paper-q-num">C4</span>Charpit's method: px+qy=pq</div>
+          <div class="paper-q"><span class="paper-q-num">C5</span>Solve Laplace equation ∂²u/∂x²+∂²u/∂y²=0 by sep of variables</div>
+        </div>
+      </div>
+
+      <div class="paper-card" onclick="togglePaper('p-21n501-2024')">
+        <div class="paper-head">
+          <div class="paper-code">21N501 — New Scheme 2023-24</div>
+          <div class="paper-title">Engineering Mathematics II (All Branch)</div>
+          <div class="paper-year">B.Tech II Sem · Max Marks: 70 · 3 Hours</div>
+        </div>
+        <div class="paper-body" id="p-21n501-2024" style="display:none">
+          <div class="paper-section-label">Part A</div>
+          <div class="paper-q"><span class="paper-q-num">Q1</span>Evaluate ∫₀^π/2 sin⁵xcos⁴x dx</div>
+          <div class="paper-q"><span class="paper-q-num">Q2</span>Change order: ∫₃^∞∫ₓ^∞ e⁻ʸdydx</div>
+          <div class="paper-q"><span class="paper-q-num">Q3</span>If r=xi+yj+zk, show ∇(1/r)=−r/r³</div>
+          <div class="paper-q"><span class="paper-q-num">Q4</span>State Gauss divergence theorem</div>
+          <div class="paper-q"><span class="paper-q-num">Q5</span>Acceleration: a=12cos2ti−8sin2tj+16tk, find v at any time</div>
+          <div class="paper-q"><span class="paper-q-num">Q6</span>Show a=(x²+xy²)i+(y²+x²y)j is irrotational</div>
+          <div class="paper-q"><span class="paper-q-num">Q7</span>Find centre and radius of sphere 2x²+2y²+2z²−3x+5y−4z=13</div>
+          <div class="paper-q"><span class="paper-q-num">Q8</span>Define Cone and Right Circular Cone</div>
+          <div class="paper-q"><span class="paper-q-num">Q9</span>Find rank of [[1,2,3],[2,1,0],[0,1,2]]</div>
+          <div class="paper-q"><span class="paper-q-num">Q10</span>Write Cayley-Hamilton theorem statement</div>
+          <div class="paper-section-label">Part B</div>
+          <div class="paper-q"><span class="paper-q-num">B1</span>Surface area by revolution: x²/³+y²/³=a²/³ about x-axis</div>
+          <div class="paper-q"><span class="paper-q-num">B2</span>Volume in first octant bounded by z=9−x², x=3−y²</div>
+          <div class="paper-q"><span class="paper-q-num">B3</span>Evaluate ∮(x³+xy)dx−(x²−y²)dy, C square x=±1,y=±1</div>
+          <div class="paper-q"><span class="paper-q-num">B4</span>Green's theorem: ∮x³ydx+x²dy, C triangle (0,0),(1,0),(1,1)</div>
+          <div class="paper-q"><span class="paper-q-num">B5</span>Cone: vertex (3,1,2), base circle 2x²+2y²−1, z=1</div>
+          <div class="paper-q"><span class="paper-q-num">B6</span>Reduce matrix [[0,1,-3,-1],[1,0,1,1],[3,1,0,2],[1,1,-2,0]]</div>
+          <div class="paper-q"><span class="paper-q-num">B7</span>Find λ,μ for equations 2x+3y+5z=9,7x+3y−2z=8,2x+3y+λz=μ</div>
+          <div class="paper-section-label">Part C</div>
+          <div class="paper-q"><span class="paper-q-num">C1</span>Evaluate ∫∫√(a²−x²) (x²+y²)dA in polar coordinates</div>
+          <div class="paper-q"><span class="paper-q-num">C2</span>Find a,b,c such that A=(x+2y+az)i+(bx−3y−z)j+(4x+cy+2z)k is irrotational, find scalar potential</div>
+          <div class="paper-q"><span class="paper-q-num">C3</span>Verify Stokes' theorem for F=(x²+y²)i−2xyj, rectangle lines x=±a,y=0,b</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="papers-m1" class="inner-section" style="display:none">
+    <div class="paper-grid">
+
+      <div class="paper-card" onclick="togglePaper('p-1e3101-2025')">
+        <div class="paper-head">
+          <div class="paper-code">1E3101 — Main/Back 2025 <span class="tag tag-new">Latest</span></div>
+          <div class="paper-title">Engineering Mathematics I</div>
+          <div class="paper-year">B.Tech I Sem · Max Marks: 70 · 3 Hours</div>
+        </div>
+        <div class="paper-body" id="p-1e3101-2025" style="display:none">
+          <div class="paper-section-label">Part A</div>
+          <div class="paper-q"><span class="paper-q-num">Q1</span>Evaluate ∫₀¹ x²(1−x)³dx</div>
+          <div class="paper-q"><span class="paper-q-num">Q2</span>Test convergence of ∫₁^∞ dx/x^(3/2)</div>
+          <div class="paper-q"><span class="paper-q-num">Q3</span>What is convergence and divergence of sequence?</div>
+          <div class="paper-q"><span class="paper-q-num">Q4</span>Find interval of convergence of exponential and log series</div>
+          <div class="paper-q"><span class="paper-q-num">Q5</span>Write Euler's formula for Fourier series</div>
+          <div class="paper-q"><span class="paper-q-num">Q6</span>Find half-range sine series for f(x)=x in 0&lt;x&lt;z</div>
+          <div class="paper-q"><span class="paper-q-num">Q7</span>If u=eˣʸᶻ, find ∂³u/∂x∂y∂z</div>
+          <div class="paper-q"><span class="paper-q-num">Q8</span>Write tangent plane equation to z=f(x,y)</div>
+          <div class="paper-q"><span class="paper-q-num">Q9</span>Change order: ∫₀¹∫ₓ²^(2−x) xy dxdy</div>
+          <div class="paper-q"><span class="paper-q-num">Q10</span>Write Green's theorem statement</div>
+          <div class="paper-section-label">Part B</div>
+          <div class="paper-q"><span class="paper-q-num">B1</span>Show ∫₀^∞ x²dx/(1+x⁴)³ = 5π√2/128</div>
+          <div class="paper-q"><span class="paper-q-num">B2</span>Test convergence of Σ 1/(√n+√(n+1))</div>
+          <div class="paper-q"><span class="paper-q-num">B3</span>Find Fourier series of f(x)=|x| for −π&lt;x&lt;π</div>
+          <div class="paper-q"><span class="paper-q-num">B4</span>Directional derivative of φ=x²−2y²+4z² at (1,1,−1) in direction 2i+j−k</div>
+          <div class="paper-q"><span class="paper-q-num">B5</span>Limit and continuity of f(x,y)=(x³−y³)/(x+y) at (0,0)</div>
+          <div class="paper-q"><span class="paper-q-num">B6</span>Evaluate ∬(x²+y²)dxdy, R bounded by y=x and y²=4x</div>
+          <div class="paper-q"><span class="paper-q-num">B7</span>Evaluate ∭fdV where f=2x+y, V bounded by z=4−x², x=y=z=0, y=z</div>
+          <div class="paper-section-label">Part C</div>
+          <div class="paper-q"><span class="paper-q-num">C1</span>Find Fourier series of f(x)=x−x² in −1&lt;x&lt;1</div>
+          <div class="paper-q"><span class="paper-q-num">C2</span>Test convergence: 1²/2²+1².3²/2².4²+1².3².5²/2².4².6²+...</div>
+          <div class="paper-q"><span class="paper-q-num">C3</span>If u=f(r), r²=x²+y², show ∂²u/∂x²+∂²u/∂y²=f''(r)+f'(r)/r</div>
+          <div class="paper-q"><span class="paper-q-num">C4</span>Volume of greatest rectangular parallelepiped in ellipsoid x²/a²+y²/b²+z²/c²=1</div>
+          <div class="paper-q"><span class="paper-q-num">C5</span>Verify Stokes' theorem for F=(x²+y−4)i+3xyj+(2xz+z²)k over hemisphere x²+y²+z²=16</div>
+        </div>
+      </div>
+
+      <div class="paper-card" onclick="togglePaper('p-1e3101-jan2026')">
+        <div class="paper-head">
+          <div class="paper-code">1E3101 — Jan 2026 (Re-back) <span class="tag tag-new">Newest</span></div>
+          <div class="paper-title">Engineering Mathematics I</div>
+          <div class="paper-year">B.Tech I Sem · Max Marks: 70 · 3 Hours</div>
+        </div>
+        <div class="paper-body" id="p-1e3101-jan2026" style="display:none">
+          <div class="paper-section-label">Part A</div>
+          <div class="paper-q"><span class="paper-q-num">Q1</span>Write relation between Beta and Gamma function</div>
+          <div class="paper-q"><span class="paper-q-num">Q2</span>Volume of solid by revolving ellipse x²/a²+y²/b²=1 about x-axis</div>
+          <div class="paper-q"><span class="paper-q-num">Q3</span>Test series 1−1/(2√2)+1/(3√3)−1/(4√4)+...</div>
+          <div class="paper-q"><span class="paper-q-num">Q4</span>Define power series</div>
+          <div class="paper-q"><span class="paper-q-num">Q5</span>Define periodic function</div>
+          <div class="paper-q"><span class="paper-q-num">Q6</span>State Parseval's theorem</div>
+          <div class="paper-q"><span class="paper-q-num">Q7</span>Evaluate lim(x,y)→(1,2) (x²+7y)/(x+y²)</div>
+          <div class="paper-q"><span class="paper-q-num">Q8</span>Evaluate curl q, where q=(y+z)i+(z+x)j+(x+y)k</div>
+          <div class="paper-q"><span class="paper-q-num">Q9</span>Evaluate ∫₀³∫₁² xy(1+x+y)dxdy</div>
+          <div class="paper-q"><span class="paper-q-num">Q10</span>State Gauss's divergence theorem</div>
+          <div class="paper-section-label">Part B</div>
+          <div class="paper-q"><span class="paper-q-num">B1</span>Evaluate ∫₀^(π/6) cos⁴3θ·sin²6θ dθ</div>
+          <div class="paper-q"><span class="paper-q-num">B2</span>Test series x/1.2 + x²/2.3 + x³/3.4 + x⁴/4.5 + ...</div>
+          <div class="paper-q"><span class="paper-q-num">B3</span>Half-range cosine series for f(x)=2x−1</div>
+          <div class="paper-q"><span class="paper-q-num">B4</span>Directional derivative of (x²+y²+4xyz) at (1,−2,2) in direction 2i−2j+k</div>
+          <div class="paper-q"><span class="paper-q-num">B5</span>Max/min of u=xy+a³/x+a³/y</div>
+          <div class="paper-q"><span class="paper-q-num">B6</span>Evaluate ∫₀^∞∫ₓ^∞ e⁻ʸ/y dxdy by changing order</div>
+          <div class="paper-q"><span class="paper-q-num">B7</span>Evaluate ∫_c F·dr where F=x²y²i+yj, c: y²=4x from (0,0) to (4,4)</div>
+          <div class="paper-section-label">Part C</div>
+          <div class="paper-q"><span class="paper-q-num">C1</span>Surface area: astroid x=acos³t, y=asin³t about x-axis</div>
+          <div class="paper-q"><span class="paper-q-num">C2</span>Expand sinx in powers of (x−π/2)</div>
+          <div class="paper-q"><span class="paper-q-num">C3</span>Find Fourier series of f(x)=x−x² in −1&lt;x&lt;1</div>
+          <div class="paper-q"><span class="paper-q-num">C4</span>Lagrange multipliers: max/min of u=x²+y²+z², ax²+by²+cz²=1 and lx+my+nz=0</div>
+          <div class="paper-q"><span class="paper-q-num">C5</span>Verify Green's theorem: ∮[(x²−xy³)dx+(y²−2xy)dy], C square (0,0),(2,0),(2,2),(0,2)</div>
+        </div>
+      </div>
+
+      <div class="paper-card" onclick="togglePaper('p-1e3101-2024')">
+        <div class="paper-head">
+          <div class="paper-code">1E3101 — Main/Back 2024</div>
+          <div class="paper-title">Engineering Mathematics I</div>
+          <div class="paper-year">B.Tech I Sem · Max Marks: 70 · 3 Hours</div>
+        </div>
+        <div class="paper-body" id="p-1e3101-2024" style="display:none">
+          <div class="paper-section-label">Part A</div>
+          <div class="paper-q"><span class="paper-q-num">Q1</span>Value of ∫₀^∞ e⁻ˣ² dx</div>
+          <div class="paper-q"><span class="paper-q-num">Q2</span>Surface area of solid of revolution about x-axis formula</div>
+          <div class="paper-q"><span class="paper-q-num">Q3</span>What is convergence of sequence?</div>
+          <div class="paper-q"><span class="paper-q-num">Q4</span>Is 1/2.3 + 1/3.4 + 1/4.5 + ... convergent?</div>
+          <div class="paper-q"><span class="paper-q-num">Q5</span>State Parseval's theorem</div>
+          <div class="paper-q"><span class="paper-q-num">Q6</span>Find a₀ for f(x)=|x| in (−π,π)</div>
+          <div class="paper-q"><span class="paper-q-num">Q7</span>Necessary and sufficient conditions for minimum of f(x,y)</div>
+          <div class="paper-q"><span class="paper-q-num">Q8</span>Gradient of f(x,y,z)=x²y²+xy²−z² at (3,1,1)</div>
+          <div class="paper-q"><span class="paper-q-num">Q9</span>Evaluate ∫₀ᵇ∫₀ˣ xy dxdy</div>
+          <div class="paper-q"><span class="paper-q-num">Q10</span>State Gauss Divergence theorem</div>
+          <div class="paper-section-label">Part B</div>
+          <div class="paper-q"><span class="paper-q-num">B1</span>Beta-gamma: ∫₀^∞ x²(1+x⁴)/(x+x)^10 dx</div>
+          <div class="paper-q"><span class="paper-q-num">B2</span>Expand sinx in powers of (x−π/2) using Taylor's series</div>
+          <div class="paper-q"><span class="paper-q-num">B3</span>Find Fourier series of x² in (−π,π), use Parseval's identity to prove π⁴/90=1+1/2⁴+...</div>
+          <div class="paper-q"><span class="paper-q-num">B4</span>If u=eˣʸᶻ, show ∂³u/∂x∂y∂z=(1+3xyz+x²y²z²)eˣʸᶻ</div>
+          <div class="paper-q"><span class="paper-q-num">B5</span>Is V=(y+z)i+(z+x)j+(x+y)k incompressible?</div>
+          <div class="paper-q"><span class="paper-q-num">B6</span>Change order: ∫₀¹∫_{eˣ}^e 1/logy dxdy</div>
+          <div class="paper-q"><span class="paper-q-num">B7</span>Evaluate ∫₁²∫₁²∫₀^yz xyz dxdydz</div>
+          <div class="paper-section-label">Part C</div>
+          <div class="paper-q"><span class="paper-q-num">C1</span>Use beta-gamma: (a) ∫₀^∞ x/(1+x⁶)dx, (b) ∫₀¹ √((1-x)/x)dx</div>
+          <div class="paper-q"><span class="paper-q-num">C2</span>Fourier series of f(x) with period 2π piecewise</div>
+          <div class="paper-q"><span class="paper-q-num">C3</span>Lagrange max/min distance of (3,4,12) from sphere x²+y²+z²=1</div>
+          <div class="paper-q"><span class="paper-q-num">C4</span>If u=f(r), r²=x²+y², prove ∂²u/∂x²+∂²u/∂y²=f''(r)+f'(r)/r</div>
+          <div class="paper-q"><span class="paper-q-num">C5</span>Verify Green's theorem for ∮[(xy+y²)dx+x²dy] bounded by y=x and y=x²</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============================= SECTION 6: FORMULA SHEET ============================= -->
+<div id="formulas" class="section">
+  <div class="section-title">📐 Formula Sheet — Quick Reference</div>
+  <div class="section-sub">Sabse important formulas ek jagah. Exam se pehle review karo.</div>
+
+  <div class="inner-tabs">
+    <button class="inner-tab active" onclick="showInner('f-matrices','f')">Matrices</button>
+    <button class="inner-tab" onclick="showInner('f-odes','f')">ODEs</button>
+    <button class="inner-tab" onclick="showInner('f-pdes','f')">PDEs</button>
+    <button class="inner-tab" onclick="showInner('f-fourier','f')">Fourier</button>
+    <button class="inner-tab" onclick="showInner('f-vector','f')">Vector Calc</button>
+    <button class="inner-tab" onclick="showInner('f-betagamma','f')">Beta-Gamma</button>
+  </div>
+
+  <div id="f-matrices" class="inner-section">
+    <div class="card">
+      <div style="font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:16px;letter-spacing:0.3px">MATRICES — KEY FORMULAS</div>
+      <div class="formula">Characteristic equation: |A − λI| = 0</div>
+      <div class="formula">Cayley-Hamilton: f(A) = 0 (where f(λ) = char. polynomial)</div>
+      <div class="formula">A⁻¹ via C-H: if aₙAⁿ + ... + a₁A + a₀I = 0
+→ a₀A⁻¹ = −(aₙAⁿ⁻¹ + ... + a₁I)</div>
+      <div class="formula">Rank-Nullity: rank(A) + nullity(A) = n (columns)</div>
+      <div class="formula">Orthogonal: A·Aᵀ = I → A⁻¹ = Aᵀ, det(A) = ±1</div>
+      <div class="formula">Eigenvalue: Av = λv → (A−λI)v = 0</div>
+      <div class="formula">Diagonalization: A = PDP⁻¹ where D = diag(λ₁, λ₂, ...)</div>
+      <div class="warning-box" style="margin-top:12px">🎯 C-H shortcut: For 2×2 A=[[a,b],[c,d]]: λ²−(a+d)λ+(ad−bc)=0. For 3×3, use cofactor expansion.</div>
+    </div>
+  </div>
+
+  <div id="f-odes" class="inner-section" style="display:none">
+    <div class="card">
+      <div style="font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:16px">ODEs — KEY FORMULAS</div>
+      <div class="formula">CF Rules (auxiliary eq m):
+• Real distinct m₁,m₂: c₁eᵐ¹ˣ + c₂eᵐ²ˣ
+• Real equal m,m: (c₁+c₂x)eᵐˣ
+• Complex α±iβ: eᵅˣ(c₁cosβx + c₂sinβx)</div>
+      <div class="formula">PI by D-operator:
+• 1/f(D)·eᵃˣ = eᵃˣ/f(a) [if f(a)≠0]
+• If f(a)=0: x·eᵃˣ/f'(a)
+• 1/f(D²)·sinax = sinax/f(−a²) [put D²=−a²]
+• 1/f(D)·xⁿ = [f(D)]⁻¹·xⁿ (binomial expansion)</div>
+      <div class="formula">Exponential shift: 1/f(D)·eᵃˣV = eᵃˣ·1/f(D+a)·V</div>
+      <div class="formula">Variation of Parameters (d²y/dx²+Py+Qy=X):
+• W = y₁y₂'−y₂y₁' (Wronskian)
+• u₁ = −∫y₂X/W dx, u₂ = ∫y₁X/W dx
+• PI = u₁y₁ + u₂y₂</div>
+      <div class="formula">Cauchy-Euler: xⁿd^n y/dx^n → put x=eᵗ
+→ xdy/dx = Dy (D=d/dt), x²d²y/dx² = D(D-1)y</div>
+      <div class="formula">Clairaut's: y = px + f(p) → solution: y = cx + f(c)</div>
+      <div class="formula">Bernoulli: dy/dx + P(x)y = Q(x)yⁿ
+→ divide by yⁿ, let v=y¹⁻ⁿ → linear equation</div>
+    </div>
+  </div>
+
+  <div id="f-pdes" class="inner-section" style="display:none">
+    <div class="card">
+      <div style="font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:16px">PDEs — KEY FORMULAS</div>
+      <div class="formula">Lagrange's form: Pp + Qq = R
+Auxiliary equations: dx/P = dy/Q = dz/R
+Find two independent integrals u=c₁ and v=c₂
+General solution: F(u,v)=0 or u=φ(v)</div>
+      <div class="formula">Charpit's auxiliary equations:
+dp/(Fₓ+pFz) = dq/(Fy+qFz) = dz/(−pFp−qFq) = dx/(−Fp) = dy/(−Fq)
+Get compatible relation between p,q, substitute in dz=pdx+qdy and integrate</div>
+      <div class="formula">Classification (Auₓₓ + Buₓᵧ + Cuᵧᵧ = 0):
+• B²−4AC < 0: Elliptic (Laplace)
+• B²−4AC = 0: Parabolic (Heat)
+• B²−4AC > 0: Hyperbolic (Wave)</div>
+      <div class="formula">1D Heat equation: ∂u/∂t = α²·∂²u/∂x²
+1D Wave equation: ∂²u/∂t² = c²·∂²u/∂x²
+2D Laplace: ∂²u/∂x² + ∂²u/∂y² = 0</div>
+      <div class="formula">Separation of Variables: u=X(x)·Y(y)
+→ X''/X = −Y''/Y = k (const)
+Three cases: k=0, k=λ², k=−λ²</div>
+    </div>
+  </div>
+
+  <div id="f-fourier" class="inner-section" style="display:none">
+    <div class="card">
+      <div style="font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:16px">FOURIER SERIES — KEY FORMULAS</div>
+      <div class="formula">Fourier series in (−L, L):
+f(x) = a₀/2 + Σ[aₙcos(nπx/L) + bₙsin(nπx/L)]
+a₀ = (1/L)∫₋L^L f(x)dx
+aₙ = (1/L)∫₋L^L f(x)cos(nπx/L)dx
+bₙ = (1/L)∫₋L^L f(x)sin(nπx/L)dx</div>
+      <div class="formula">Standard period 2π (L=π):
+a₀ = (1/π)∫₋π^π f(x)dx
+aₙ = (1/π)∫₋π^π f(x)cosnx dx
+bₙ = (1/π)∫₋π^π f(x)sinnx dx</div>
+      <div class="formula">Half-range cosine (0 to L), extend as even:
+bₙ=0, a₀=(2/L)∫₀^L f(x)dx, aₙ=(2/L)∫₀^L f(x)cos(nπx/L)dx</div>
+      <div class="formula">Half-range sine (0 to L), extend as odd:
+aₙ=0, bₙ=(2/L)∫₀^L f(x)sin(nπx/L)dx</div>
+      <div class="formula">Parseval's identity:
+(1/L)∫₋L^L [f(x)]²dx = a₀²/2 + Σ(aₙ²+bₙ²)</div>
+      <div class="formula">Even function: aₙ only (bₙ=0)
+Odd function: bₙ only (aₙ=0, a₀=0)</div>
+      <div class="warning-box" style="margin-top:12px">🎯 Quick check: x−x² is neither even nor odd (has both x=odd and x²=even parts). So compute both aₙ and bₙ separately!</div>
+    </div>
+  </div>
+
+  <div id="f-vector" class="inner-section" style="display:none">
+    <div class="card">
+      <div style="font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:16px">VECTOR CALCULUS — KEY FORMULAS</div>
+      <div class="formula">Gradient: ∇f = (∂f/∂x)i + (∂f/∂y)j + (∂f/∂z)k</div>
+      <div class="formula">Directional derivative: Dₐf = ∇f · â (â = unit vector)
+Direction of max DD = direction of ∇f
+Max value = |∇f|</div>
+      <div class="formula">Divergence: ∇·F = ∂P/∂x + ∂Q/∂y + ∂R/∂z
+(F = Pi + Qj + Rk)
+Solenoidal (incompressible): ∇·F = 0</div>
+      <div class="formula">Curl: ∇×F = |i, j, k; ∂/∂x, ∂/∂y, ∂/∂z; P, Q, R|
+Irrotational: ∇×F = 0</div>
+      <div class="formula">Green's Theorem: ∮(Mdx+Ndy) = ∬(∂N/∂x−∂M/∂y)dxdy
+(C counterclockwise, R = enclosed region)</div>
+      <div class="formula">Gauss Divergence: ∯_S F·dS = ∭_V (∇·F)dV</div>
+      <div class="formula">Stokes' Theorem: ∮_C F·dr = ∬_S (∇×F)·dS</div>
+      <div class="formula">Scalar potential φ: F = ∇φ (when F is irrotational)
+Find φ by integrating ∂φ/∂x=P, ∂φ/∂y=Q, ∂φ/∂z=R</div>
+    </div>
+  </div>
+
+  <div id="f-betagamma" class="inner-section" style="display:none">
+    <div class="card">
+      <div style="font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:16px">BETA-GAMMA FUNCTIONS</div>
+      <div class="formula">Gamma function: Γ(n) = ∫₀^∞ e⁻ˣ·xⁿ⁻¹ dx
+Γ(n+1) = n·Γ(n)  [Recurrence]
+Γ(n+1) = n! [for integers]
+Γ(1/2) = √π</div>
+      <div class="formula">Beta function: B(m,n) = ∫₀¹ xᵐ⁻¹(1−x)ⁿ⁻¹ dx = Γ(m)Γ(n)/Γ(m+n)
+B(m,n) = B(n,m) [symmetric]</div>
+      <div class="formula">Trigonometric form: B(m,n) = 2∫₀^π/2 sin²ᵐ⁻¹θ·cos²ⁿ⁻¹θ dθ
+→ ∫₀^π/2 sinᵖθ·cosqθ dθ = B((p+1)/2,(q+1)/2)/2
+= Γ((p+1)/2)·Γ((q+1)/2) / [2·Γ((p+q+2)/2)]</div>
+      <div class="formula">∫₀^∞ xⁿ⁻¹/(1+x) dx = π/sin(nπ) [0&lt;n&lt;1]
+∫₀^∞ e⁻ˣ² dx = √π/2 = Γ(1/2)/2</div>
+      <div class="warning-box" style="margin-top:12px">🎯 Common values: Γ(1)=1, Γ(2)=1, Γ(3)=2, Γ(4)=6, Γ(1/2)=√π, Γ(3/2)=√π/2</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end wrapper -->
+
+<div style="text-align:center;padding:40px 20px;color:var(--text3);font-size:12px;border-top:1px solid var(--border);margin-top:40px">
+  RTU Kota Engineering Mathematics Master Guide · Papers 2022–2026 · Prepared for exam preparation only
+</div>
+
+<script>
+function showSection(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function toggleUnit(id){
+  const body=document.getElementById(id+'-body');
+  const arrow=document.getElementById(id+'-arrow');
+  if(body.classList.contains('open')){body.classList.remove('open');arrow.classList.remove('open')}
+  else{body.classList.add('open');arrow.classList.add('open')}
+}
+
+function toggleAns(id){
+  const body=document.getElementById(id);
+  const toggle=document.getElementById(id+'-toggle');
+  if(body.classList.contains('open')){body.classList.remove('open');if(toggle)toggle.classList.remove('open')}
+  else{body.classList.add('open');if(toggle)toggle.classList.add('open')}
+}
+
+function togglePaper(id){
+  const el=document.getElementById(id);
+  el.style.display=el.style.display==='none'?'block':'none';
+}
+
+function showInner(id, group){
+  document.querySelectorAll('.inner-section').forEach(s=>{
+    if(s.closest('.section.active')||true) s.style.display='none';
+  });
+  document.getElementById(id).style.display='block';
+  // update tabs
+  const sec=document.getElementById(id).closest('.section');
+  sec.querySelectorAll('.inner-tab').forEach(t=>t.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+// Open first answers by default
+window.addEventListener('load',()=>{
+  // auto-animate bars
+  setTimeout(()=>{
+    document.querySelectorAll('.freq-fill,.metric-fill,.prog-fill,.imp-bar-fill').forEach(el=>{
+      const w=el.style.width;el.style.width='0';
+      setTimeout(()=>{el.style.width=w},100);
+    });
+  },200);
+});
+</script>
+</body>
+</html>
